@@ -1,0 +1,11 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+node_modules
+.DS_Store
+.idea
+*.pyc
+*.db
+*.csv
+*~
+/data/events.json
+/data/va_parsed.pkl
+/static/package-lock.json

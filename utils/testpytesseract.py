@@ -27,7 +27,7 @@ def preprocessing(img):
     #(threshold, im_bw) = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
     return gray
 
-img = cv2.imread('../img/IMG_4701.jpg')
+img = cv2.imread('../img/keanms.jpg')
 gray = preprocessing(img)
 print("~~~~start~~~~~~~~~~~~`")
 print(pytesseract.image_to_string(gray))

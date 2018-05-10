@@ -1,22 +1,24 @@
+import sys
 import cv2
 import numpy as np
 import pytesseract
-import glob
 from preprocessing.preprocessing import get_perspective_transformed_im
+import glob
+sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
+import textRec, drawRect, kmeans, get_contours
+
 pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 mser = cv2.MSER_create()
-mser.setMinArea(50)
+#mser.setMinArea(50)
 mser.setMaxArea(500)
-flag_all = True
 
 
 def str_confidence(str):
     numbers = sum(c.isdigit() for c in str)
     words = sum(c.isalpha() for c in str)
     spaces = sum(c.isspace() for c in str)
-    others = len(str) - numbers - words - spaces
-
     return abs(4-words) +abs(7-numbers)
+
 
 def result_refine(str):
     for char in str:
@@ -24,12 +26,14 @@ def result_refine(str):
             str = str.replace(char, "")
     return str
 
+
 def is_text(str):
     words = sum(c.isalpha() for c in str)
     if words == len(str):
         return True
     else:
         return False
+
 
 def preprocessing_im(img):
     # resize
@@ -42,13 +46,13 @@ def preprocessing_im(img):
     img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
     #img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
     img = cv2.fastNlMeansDenoisingColored(img, None, 7, 7, 7, 21)
-    #cv2.imshow("after denoise", img)
     # color to gray
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # perspective transform
     gray = get_perspective_transformed_im(gray)
-    cv2.imshow("after deskew", gray)
 
+    #cv2.imshow("after deskew", gray)
+    textRec.text_detection_MSER(gray)
     #binary
     #edges = cv2.Canny(gray, 50, 150, apertureSize=3)
     #cv2.imshow("edge",edges)
@@ -70,6 +74,7 @@ def postprocessing(gray):
         yy = cnt[:, 1]
         color = 255
         canvas3[yy, xx] = color
+    cv2.imshow("canvas", canvas3)
     image_str = pytesseract.image_to_string(canvas3)
     tesseract_data = pytesseract.image_to_data(canvas3,output_type= "dict")
     min_conf = 100
@@ -90,24 +95,29 @@ def postprocessing(gray):
             left = tesseract_data["left"][i] - 10
             top = tesseract_data["top"][i] - 10
             img_patch = gray[top:top + h_roi + 10, left:left + w_roi + 10]
+            cv2.imshow("patch", img_patch)
+            #drawRect.drawRect(img_patch)
+            #kmeans.kmeans(img_patch)
+            #print("refined results:", pytesseract.image_to_string(kmeans.kmeans(img_patch)))
             print("refined results:", pytesseract.image_to_string(img_patch))
     return result
-
 '''
 for file in glob.glob("img/*.jpg"):
-    print("~~~~~~~~")
-    print(file)
+    print("~~~~~~~~", file)
     img = cv2.imread(file)
-    cv2.imshow("image", img)
+    #cv2.imshow("image", img)
     gray = preprocessing_im(img)
     result = postprocessing(gray)
     #print(file, ":", postprocessing(gray))
+    cv2.waitKey(0)
 '''
 
 
 img = cv2.imread("img/IMG_4693.jpg")
 cv2.imshow("image", img)
+
 gray = preprocessing_im(img)
 postprocessing(gray)
 cv2.waitKey(0)
+
 
