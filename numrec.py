@@ -98,6 +98,7 @@ def postprocessing(gray):
             cv2.imshow("patch", img_patch)
             #drawRect.drawRect(img_patch)
             #kmeans.kmeans(img_patch)
+            kmeans.kmeans(img_patch)
             #print("refined results:", pytesseract.image_to_string(kmeans.kmeans(img_patch)))
             print("refined results:", pytesseract.image_to_string(img_patch))
     return result
