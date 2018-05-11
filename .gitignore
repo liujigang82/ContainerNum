@@ -5,5 +5,4 @@ dist
 env
 Tesseract-OCR
 test
-icon
 __pycache__
