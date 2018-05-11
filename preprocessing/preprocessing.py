@@ -45,10 +45,10 @@ def get_horizontal_vertical_lines(gray):
     return vertical_params, horizontal_params
 
 
-def compute_perspective_matrix(vertical_params, horizontal_params):
+def compute_perspective_matrix(vertical_params, horizontal_params, h, w):
     np_vert = np.abs(np.array(vertical_params))
     np_hori = np.abs(np.array(horizontal_params))
-
+    pers_matrix =  []
     #
     index_rho, index_theta = np_vert.argmax(axis=0)
     vert_max = vertical_params[index_rho]
@@ -61,6 +61,9 @@ def compute_perspective_matrix(vertical_params, horizontal_params):
 
     index_rho, index_theta = np_hori.argmin(axis=0)
     hori_min = horizontal_params[index_rho]
+
+    if abs(vert_max[0])-abs(vert_min[0]) < h/4 or abs(hori_max[0])-abs(hori_min[0]) < w/4:
+        return pers_matrix
 
     p_left_top = compute_intersection(hori_min, vert_min)
     p_right_top = compute_intersection(hori_min, vert_max)
@@ -79,5 +82,8 @@ def get_perspective_transformed_im(gray):
     vertical_params, horizontal_params = get_horizontal_vertical_lines(gray)
     if len(vertical_params) > 1 and len(horizontal_params) > 1:
         h, w = gray.shape
-        gray = cv2.warpPerspective(gray, compute_perspective_matrix(vertical_params, horizontal_params), (w, h))
+        M = compute_perspective_matrix(vertical_params, horizontal_params, h, w)
+        if M ==[]:
+            return gray
+        gray = cv2.warpPerspective(gray, M , (w, h))
     return gray

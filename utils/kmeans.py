@@ -32,5 +32,5 @@ def kmeans(image):
     res2 = res.reshape((image.shape))
     cv2.imshow("kmeans", res2)
     cv2.imwrite("kmeans_4693.jpg",res2)
-    cv2.imwrite("patch_4693.jpg", res2)
+    cv2.imwrite("patch_4693.jpg", image)
     return res2
