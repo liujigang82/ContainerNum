@@ -9,7 +9,7 @@ def drawRect(img):
     ## Get mser, and set parameters
     mser = cv2.MSER_create()
     mser.setMinArea(50)
-    mser.setMaxArea(500)
+    mser.setMaxArea(400)
     coordinates, bboxes = mser.detectRegions(gray)
     print("coordinates:", len(coordinates))
     for p in coordinates:
@@ -25,3 +25,4 @@ def drawRect(img):
         canvas3[yy, xx] = color
     cv2.imshow("rect", img)
     cv2.imshow("dd",canvas3)
+    return canvas3
