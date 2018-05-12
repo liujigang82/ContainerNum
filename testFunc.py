@@ -4,7 +4,7 @@ import numpy as np
 import pytesseract
 from preprocessing.preprocessing import get_perspective_transformed_im
 import glob
-sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
+sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
 import textRec, drawRect, kmeans, get_contours
 
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
@@ -146,7 +146,7 @@ for file in glob.glob("img/*.jpg"):
     cv2.waitKey(0)
 '''
 
-img = cv2.imread("img/IMG_4693.jpg")
+img = cv2.imread("img/APZU.jpg")
 cv2.imshow("image", img)
 gray = preprocessing_im(img)
 postprocessing(gray)

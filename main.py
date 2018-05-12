@@ -3,7 +3,7 @@ import os
 import glob
 import cv2
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import  QWidget, QMainWindow, QTextEdit, QAction, QApplication, QFileDialog, QGridLayout, QLabel,QMenuBar, QToolBar, QVBoxLayout
+from PyQt5.QtWidgets import  QWidget, QTextEdit, QAction, QApplication, QFileDialog, QGridLayout, QLabel,QMenuBar, QToolBar, QVBoxLayout
 from PyQt5.QtGui import QIcon, QPixmap
 from numrec import num_rec
 
