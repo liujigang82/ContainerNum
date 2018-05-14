@@ -198,11 +198,11 @@ for file in glob.glob("../img/*.jpg"):
     if len(vertical_params) > 1 and len(horizontal_params) > 1:
         h, w = gray_vis.shape
         dst = cv2.warpPerspective(gray_vis, compute_perspective_matrix(vertical_params, horizontal_params), (w, h))
-        cv2.imshow("perspective", dst)
-        cv2.imwrite("face-" + str(i) + ".jpg", dst)
+        #cv2.imshow("perspective", dst)
+        cv2.imwrite( "deskewed_%04d.jpg"%i, dst)
     else:
-        cv2.imwrite("face-" + str(i) + ".jpg", img)
-        cv2.imshow("line image", img)
+        cv2.imwrite("deskewed_%04d.jpg"%i, img)
+
     cv2.waitKey(33)
 
 '''

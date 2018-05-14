@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('../img/IMG_4694.jpg', cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('../img/0004.jpg', cv2.IMREAD_GRAYSCALE)
 
 def dist(point1, point2):
     return np.sqrt((point1[0]-point2[0])*(point1[0]-point2[0])+(point1[1]-point2[1])*(point1[1]-point2[1]))

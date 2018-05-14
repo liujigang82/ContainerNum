@@ -27,11 +27,46 @@ def preprocessing(img):
     #(threshold, im_bw) = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
     return gray
 
-img = cv2.imread('../img/keanms.jpg')
-gray = preprocessing(img)
+
+def is_text(str):
+    words = sum(c.isalpha() for c in str)
+    if words == len(str):
+        return True
+    else:
+        return False
+
+def myfind(y, x):
+    return [ a for a in range(len(y)) if y[a] == x]
+
+img = cv2.imread('../img/tmp.jpg')
+#gray = preprocessing(img)
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 print("~~~~start~~~~~~~~~~~~`")
+
+result = pytesseract.image_to_string(gray)
 print(pytesseract.image_to_string(gray))
+
 print(pytesseract.image_to_data(gray))
-print(pytesseract.image_to_boxes(gray))
+tesseract_data = pytesseract.image_to_data(gray, output_type="dict")
+# print(tesseract_data)
+for i in range(len(tesseract_data["text"])):
+    itemList = tesseract_data["text"]
+    if itemList[i] in result and len(itemList[i]) >= 2 and is_text(itemList[i]):
+
+        print(myfind(tesseract_data["level"], tesseract_data["level"][i]))
+        print(myfind(tesseract_data["page_num"],tesseract_data["page_num"][i]))
+        print(myfind(tesseract_data["block_num"],tesseract_data["block_num"][i]))
+        print(myfind(tesseract_data["par_num"], tesseract_data["par_num"][i]))
+        print(myfind(tesseract_data["line_num"], tesseract_data["line_num"][i]))
+
+
+        h_roi = int(tesseract_data["height"][i] + 15)
+        w_roi = int(h_roi * 5.5)
+        left = tesseract_data["left"][i] - 15
+        top = tesseract_data["top"][i] - 15
+        img_patch = gray[top:top + h_roi + 15, left:left + w_roi + 15]
+        cv2.imshow("patch", img_patch)
+        print("refined results:", pytesseract.image_to_string(img_patch))
+
 
 print("~~~~end~~~~~~~~~~~~`")
