@@ -2,129 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8af36d18-2a7c-45b7-8ded-2946a35f6625" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/utils/ChangeFileName.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/utils/calculateAngle.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/APZU.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/AXIU柜门照.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/BEAU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/BHCU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/BMOU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/BSIU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CAIU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CBHU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CLHU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CMAU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CMAU柜门2.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CNSU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CXDU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CXSU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CZZU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CZZU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/DFSU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/DRYU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/ECMU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/EGSU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/EISU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/EMCU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/FSCU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/GATU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/GESU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/GESU柜门1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/HALU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/HASU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/HDMU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/HLXU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/HNSU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4693.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4694.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4695.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4696.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4697.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4698.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4699.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4700.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4701.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4702.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4703.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4704.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4705.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4706.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4714.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMG_4715.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/IMTU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/KKFU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/KMTU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/KWLU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/MEDU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/MOAU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/MRKU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/MRSU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/MSKU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/MSKU柜门2.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/MWMU.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/NLLU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/OOLU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/PCIU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/PONU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/RFCU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/RWSU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SEGU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SGCU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SITU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SKHU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TCIU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TCKU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TCLU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TCNU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TEMU柜门 (1).jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TEMU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TGBU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TGCU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TGHU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TLLU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TLLU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TRHU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TSLU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/UACU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/UETU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/UETU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/WBPU柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/WHLU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/WHSU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/XYLU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/YMLU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/YMMU柜门.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/YYCU柜门 (1).jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/YYCU柜门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/ZCSU门.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/柜门照 (1).jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/柜门照 (2).jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/柜门照.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/粤AN3336-提柜.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-10.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-11.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-12.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-13.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-14.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-15.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-16.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-7.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-8.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/deskew/face-9.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ContainerNum.iml" afterPath="$PROJECT_DIR$/.idea/ContainerNum.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testFunc.py" afterPath="$PROJECT_DIR$/testFunc.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/descrwing.py" afterPath="$PROJECT_DIR$/utils/descrwing.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/deskew.py" afterPath="$PROJECT_DIR$/utils/deskew.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/findLines.py" afterPath="$PROJECT_DIR$/utils/findLines.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/testpytesseract.py" afterPath="$PROJECT_DIR$/utils/testpytesseract.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/ContainerNum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ContainerNum.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testFunc.py" beforeDir="false" afterPath="$PROJECT_DIR$/testFunc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/testpytesseract.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/testpytesseract.py" afterDir="false" />
     </list>
     <ignored path="ContainerNum.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -136,7 +18,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/ContainerNum$textRec.coverage" NAME="textRec Coverage Results" MODIFIED="1525919407883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/ContainerNum$drawRect.coverage" NAME="drawRect Coverage Results" MODIFIED="1526043795216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
@@ -154,24 +35,23 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="ContainerNum" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.65973663">
+    <splitter split-orientation="horizontal" split-proportion="0.66092944">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="numrec.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/numrec.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1634">
-                  <caret line="99" column="22" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="22" />
+                <state relative-caret-position="1564">
+                  <caret line="105" column="4" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="76" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
-                    <element signature="e#1045#1209#0" expanded="false" />
-                    <element signature="e#1240#1388#0" expanded="false" />
-                    <element signature="e#1413#1527#0" expanded="false" />
+                    <element signature="e#1045#1209#0" />
+                    <element signature="e#1240#1388#0" />
+                    <element signature="e#1413#1527#0" />
                   </folding>
                 </state>
               </provider>
@@ -180,33 +60,11 @@
           <file leaf-file-name="testFunc.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/testFunc.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1102">
-                  <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="68" selection-end-column="20" />
+                <state relative-caret-position="255">
+                  <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="calculateAngle.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/utils/calculateAngle.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="361">
-                  <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-                  <folding>
-                    <element signature="e#0#18#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ChangeFileName.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/utils/ChangeFileName.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="171">
-                  <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -214,11 +72,8 @@
           <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="266">
-                  <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="68">
+                  <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -226,23 +81,17 @@
           <file leaf-file-name="preprocessing.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/preprocessing/preprocessing.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="209">
-                  <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-                  <folding />
+                <state relative-caret-position="629">
+                  <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="testpytesseract.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/utils/testpytesseract.py">
+          <file leaf-file-name="backup_code.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/backup/backup_code.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="433">
-                  <caret line="55" column="20" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="20" />
-                  <folding>
-                    <element signature="e#0#18#0" expanded="true" />
-                    <element signature="e#149#1012#0" expanded="false" />
-                    <element signature="e#1037#1151#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="1428">
+                  <caret line="84" selection-start-line="84" selection-end-line="84" />
                 </state>
               </provider>
             </entry>
@@ -250,9 +99,21 @@
           <file leaf-file-name="textRec.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/utils/textRec.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="532">
-                  <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-                  <folding />
+                <state relative-caret-position="646">
+                  <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="testpytesseract.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/utils/testpytesseract.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="239">
+                  <caret line="88" column="55" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                    <element signature="e#149#1012#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -261,58 +122,14 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="drawRect.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="drawRect.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/utils/drawRect.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="437">
-                  <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+                <state relative-caret-position="248">
+                  <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="findLines.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/utils/findLines.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="211">
-                  <caret line="169" column="31" selection-start-line="169" selection-start-column="31" selection-end-line="169" selection-end-column="31" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="deskew.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/utils/deskew.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="760">
-                  <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="descrwing.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/utils/descrwing.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="608">
-                  <caret line="33" column="61" selection-start-line="33" selection-start-column="61" selection-end-line="33" selection-end-column="61" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="perspectiveTrasnsform.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/utils/perspectiveTrasnsform.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -377,82 +194,35 @@
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
-  </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ContainerNum" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ContainerNum" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ContainerNum" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ContainerNum" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ContainerNum" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ContainerNum" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ContainerNum" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="ContainerNum" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ContainerNum" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ContainerNum" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ContainerNum" type="462c0819:PsiDirectoryNode" />
+              <item name="backup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ContainerNum" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ContainerNum" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
       <pane id="Course" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -460,7 +230,6 @@
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -475,7 +244,84 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.testpytesseract">
-    <configuration default="false" name="testFunc" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="ContainerNum" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="calculateAngle" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ContainerNum" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/calculateAngle.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="descrwing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ContainerNum" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/descrwing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="findLines" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ContainerNum" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/findLines.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="testFunc" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ContainerNum" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -486,14 +332,15 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ContainerNum" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testFunc.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration default="false" name="calculateAngle" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="testpytesseract" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ContainerNum" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -504,66 +351,23 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ContainerNum" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/calculateAngle.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="descrwing" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ContainerNum" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/descrwing.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="findLines" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ContainerNum" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/findLines.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="testpytesseract" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ContainerNum" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/testpytesseract.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="ContainerNum" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
     </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -616,37 +420,6 @@
       <option name="ADDITIONAL_ARGS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ContainerNum" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <module name="ContainerNum" />
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -684,15 +457,14 @@
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="ContainerNum" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ContainerNum" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
@@ -701,97 +473,67 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
-      <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Nosetests">
+      <module name="ContainerNum" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ContainerNum" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="ContainerNum" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ContainerNum" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="false" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
+      <module name="ContainerNum" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ContainerNum" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="testToRun" value="" />
-      <option name="keywords" value="" />
-      <option name="params" value="" />
-      <option name="USE_PARAM" value="false" />
-      <option name="USE_KEYWORD" value="false" />
-      <method />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.testFunc" />
-      <item index="1" class="java.lang.String" itemvalue="Python.calculateAngle" />
-      <item index="2" class="java.lang.String" itemvalue="Python.descrwing" />
-      <item index="3" class="java.lang.String" itemvalue="Python.findLines" />
-      <item index="4" class="java.lang.String" itemvalue="Python.testpytesseract" />
+    <list>
+      <item itemvalue="Python.testFunc" />
+      <item itemvalue="Python.calculateAngle" />
+      <item itemvalue="Python.descrwing" />
+      <item itemvalue="Python.findLines" />
+      <item itemvalue="Python.testpytesseract" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.testpytesseract" />
-        <item index="1" class="java.lang.String" itemvalue="Python.testFunc" />
-        <item index="2" class="java.lang.String" itemvalue="Python.findLines" />
-        <item index="3" class="java.lang.String" itemvalue="Python.descrwing" />
-        <item index="4" class="java.lang.String" itemvalue="Python.calculateAngle" />
+      <list>
+        <item itemvalue="Python.testpytesseract" />
+        <item itemvalue="Python.testFunc" />
+        <item itemvalue="Python.findLines" />
+        <item itemvalue="Python.descrwing" />
+        <item itemvalue="Python.calculateAngle" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -807,22 +549,33 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="false" />
+    <frame x="-6" y="50" width="1546" height="780" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23347548" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17837235" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44370124" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.2306163" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3287483" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.31361762" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.2366864" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.3292011" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" weight="0.32998884" />
+      <window_info anchor="right" id="Remote Host" order="0" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23347548" />
+      <window_info id="Structure" order="0" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="0" />
+      <window_info anchor="bottom" id="Run" order="0" weight="0.44370124" />
+      <window_info anchor="bottom" id="Debug" order="0" weight="0.32998884" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32998884" />
+      <window_info anchor="bottom" id="Python Console" order="0" weight="0.17837235" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -847,7 +600,6 @@
       </breakpoints>
       <option name="time" value="2" />
     </breakpoint-manager>
-    <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/utils/drawRect.py">
@@ -866,9 +618,9 @@
           <caret line="105" column="4" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="76" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#1045#1209#0" expanded="false" />
-            <element signature="e#1240#1388#0" expanded="false" />
-            <element signature="e#1413#1527#0" expanded="false" />
+            <element signature="e#1045#1209#0" />
+            <element signature="e#1240#1388#0" />
+            <element signature="e#1413#1527#0" />
           </folding>
         </state>
       </provider>
@@ -907,11 +659,10 @@
     <entry file="file://$PROJECT_DIR$/utils/testpytesseract.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#149#1012#0" expanded="false" />
-            <element signature="e#1037#1151#0" expanded="false" />
+            <element signature="e#149#1012#0" />
           </folding>
         </state>
       </provider>
@@ -920,9 +671,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -954,7 +702,7 @@
     <entry file="file://$PROJECT_DIR$/utils/deskew.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
@@ -968,7 +716,7 @@
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_ipython_console_011.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="221" column="0" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
+          <caret line="221" selection-start-line="221" selection-end-line="221" />
         </state>
       </provider>
     </entry>
@@ -1015,9 +763,9 @@
           <caret line="105" column="4" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="76" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#1045#1209#0" expanded="false" />
-            <element signature="e#1240#1388#0" expanded="false" />
-            <element signature="e#1413#1527#0" expanded="false" />
+            <element signature="e#1045#1209#0" />
+            <element signature="e#1240#1388#0" />
+            <element signature="e#1413#1527#0" />
           </folding>
         </state>
       </provider>
@@ -1052,11 +800,10 @@
     <entry file="file://$PROJECT_DIR$/utils/testpytesseract.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#149#1012#0" expanded="false" />
-            <element signature="e#1037#1151#0" expanded="false" />
+            <element signature="e#149#1012#0" />
           </folding>
         </state>
       </provider>
@@ -1065,9 +812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1082,7 +826,7 @@
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_ipython_console_011.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="221" column="0" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
+          <caret line="221" selection-start-line="221" selection-end-line="221" />
         </state>
       </provider>
     </entry>
@@ -1111,26 +855,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Envs/container/Lib/site-packages/pytesseract/pytesseract.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Envs/container/Lib/site-packages/pytesseract/pytesseract.py" />
     <entry file="file://$PROJECT_DIR$/utils/perspectiveTrasnsform.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1138,26 +872,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="608">
           <caret line="33" column="61" selection-start-line="33" selection-start-column="61" selection-end-line="33" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/deskew.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/drawRect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+        <state relative-caret-position="248">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -1168,7 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="169" column="31" selection-start-line="169" selection-start-column="31" selection-end-line="169" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1176,50 +903,47 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/numrec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1634">
-          <caret line="99" column="22" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="22" />
+        <state relative-caret-position="1564">
+          <caret line="105" column="4" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="76" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#1045#1209#0" expanded="false" />
-            <element signature="e#1240#1388#0" expanded="false" />
-            <element signature="e#1413#1527#0" expanded="false" />
+            <element signature="e#1045#1209#0" />
+            <element signature="e#1240#1388#0" />
+            <element signature="e#1413#1527#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backup/backup_code.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="67" column="87" selection-start-line="67" selection-start-column="87" selection-end-line="67" selection-end-column="87" />
+        <state relative-caret-position="1428">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/preprocessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="629">
+          <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/textRec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="646">
+          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testFunc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1102">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="68" selection-end-column="20" />
+        <state relative-caret-position="255">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -1230,20 +954,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/testpytesseract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="55" column="20" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="20" />
+        <state relative-caret-position="239">
+          <caret line="88" column="55" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#149#1012#0" expanded="false" />
-            <element signature="e#1037#1151#0" expanded="false" />
+            <element signature="e#149#1012#0" />
           </folding>
         </state>
       </provider>

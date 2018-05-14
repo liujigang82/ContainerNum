@@ -4,8 +4,8 @@ import numpy as np
 import pytesseract
 from preprocessing.preprocessing import get_perspective_transformed_im
 import glob
-#sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
-sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
+sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
+#sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
 import textRec, drawRect, kmeans, get_contours, calculateAngle
 
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'

@@ -52,21 +52,44 @@ tesseract_data = pytesseract.image_to_data(gray, output_type="dict")
 for i in range(len(tesseract_data["text"])):
     itemList = tesseract_data["text"]
     if itemList[i] in result and len(itemList[i]) >= 2 and is_text(itemList[i]):
+        level_index = myfind(tesseract_data["level"], tesseract_data["level"][i])
+        page_index = myfind(tesseract_data["level"], tesseract_data["level"][i])
+        block_index = myfind(tesseract_data["block_num"],tesseract_data["block_num"][i])
+        par_index = myfind(tesseract_data["par_num"],tesseract_data["par_num"][i])
+        line_index = myfind(tesseract_data["line_num"], tesseract_data["line_num"][i])
 
-        print(myfind(tesseract_data["level"], tesseract_data["level"][i]))
-        print(myfind(tesseract_data["page_num"],tesseract_data["page_num"][i]))
-        print(myfind(tesseract_data["block_num"],tesseract_data["block_num"][i]))
-        print(myfind(tesseract_data["par_num"], tesseract_data["par_num"][i]))
-        print(myfind(tesseract_data["line_num"], tesseract_data["line_num"][i]))
+        index = [i for i in level_index if i in page_index and i in block_index and i in par_index and i in line_index]
+        print("index", index)
+
+        left1 = tesseract_data["left"][index[0]]
+        left2 = tesseract_data["left"][index[len(index)-1]]
+
+        top1 = tesseract_data["top"][index[0]]
+        top2 = tesseract_data["top"][index[len(index)-1]]
+
+        width1 = tesseract_data["width"][index[0]]
+        width2 = tesseract_data["width"][index[len(index)-1]]
+
+        height1 = tesseract_data["height"][index[0]]
+        height2 = tesseract_data["height"][index[len(index)-1]]
+
+        left = min(left1, left2)
+        top = min(top1, top2)
+
+        right = max(left1+width1, left2+width2)
+        bottom = max(top1+height1, top2+height2)
 
 
-        h_roi = int(tesseract_data["height"][i] + 15)
-        w_roi = int(h_roi * 5.5)
-        left = tesseract_data["left"][i] - 15
-        top = tesseract_data["top"][i] - 15
-        img_patch = gray[top:top + h_roi + 15, left:left + w_roi + 15]
+
+        #h_roi = int(tesseract_data["height"][i] + 15)
+        #w_roi = int(h_roi * 5.5)
+        #left = tesseract_data["left"][i] - 15
+        #top = tesseract_data["top"][i] - 15
+        #img_patch = gray[top:top + h_roi + 15, left:left + w_roi + 15]
+        img_patch = gray[top-5:bottom+5, left-5:right+5]
         cv2.imshow("patch", img_patch)
         print("refined results:", pytesseract.image_to_string(img_patch))
 
 
 print("~~~~end~~~~~~~~~~~~`")
+cv2.waitKey(0)
