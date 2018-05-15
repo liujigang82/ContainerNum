@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 
+angle_threshold_line_detection = 20
 
 def dist(point1, point2):
     return np.sqrt((point1[0]-point2[0])*(point1[0]-point2[0])+(point1[1]-point2[1])*(point1[1]-point2[1]))
@@ -35,12 +36,13 @@ def get_horizontal_vertical_lines(gray):
     gray = auto_canny(gray)
     #detect regions in gray scale image
     height, width = gray.shape
-    lines = cv2.HoughLines(gray, rho=1, theta =np.pi/180, threshold = 200)
+    lines = cv2.HoughLines(gray, rho=1, theta =np.pi/180, threshold = 160)
+
     for line in lines:
         for rho, theta in line:
-            if theta*180/np.pi < 30 or theta*180/np.pi > 150:
+            if theta*180/np.pi < angle_threshold_line_detection or theta*180/np.pi > 180 - angle_threshold_line_detection:
                     vertical_params.append([rho, theta])
-            if theta*180/np.pi > 60 and theta*180/np.pi < 125:
+            if theta*180/np.pi > 90-angle_threshold_line_detection and theta*180/np.pi < 90 + angle_threshold_line_detection:
                 horizontal_params.append([rho, theta])
     return vertical_params, horizontal_params
 
@@ -62,7 +64,7 @@ def compute_perspective_matrix(vertical_params, horizontal_params, h, w):
     index_rho, index_theta = np_hori.argmin(axis=0)
     hori_min = horizontal_params[index_rho]
 
-    if abs(vert_max[0])-abs(vert_min[0]) < h/4 or abs(hori_max[0])-abs(hori_min[0]) < w/4:
+    if abs(vert_max[0])-abs(vert_min[0]) < h/5 or abs(hori_max[0])-abs(hori_min[0]) < w/5:
         return pers_matrix
 
     p_left_top = compute_intersection(hori_min, vert_min)

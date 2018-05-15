@@ -1,7 +1,9 @@
 import pytesseract
-
+import numpy as np
 import cv2
 pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
+
+t_boundary = 5
 
 def preprocessing(img):
     # resize
@@ -41,11 +43,17 @@ def myfind(y, x):
 img = cv2.imread('../img/tmp.jpg')
 #gray = preprocessing(img)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+cv2.imshow("gray", gray)
+kernel = np.ones((2,2),np.uint8)
+gray = cv2.erode(gray,kernel,iterations = 1)
+cv2.imshow("erosion", gray)
+
 print("~~~~start~~~~~~~~~~~~`")
 
 result = pytesseract.image_to_string(gray)
-print(pytesseract.image_to_string(gray))
+print(result)
 
+print("~~~~~~~~~~~~~~~~~")
 print(pytesseract.image_to_data(gray))
 tesseract_data = pytesseract.image_to_data(gray, output_type="dict")
 # print(tesseract_data)
@@ -86,7 +94,7 @@ for i in range(len(tesseract_data["text"])):
         #left = tesseract_data["left"][i] - 15
         #top = tesseract_data["top"][i] - 15
         #img_patch = gray[top:top + h_roi + 15, left:left + w_roi + 15]
-        img_patch = gray[top-5:bottom+5, left-5:right+5]
+        img_patch = gray[top-t_boundary:bottom+t_boundary, left-t_boundary:right+t_boundary]
         cv2.imshow("patch", img_patch)
         print("refined results:", pytesseract.image_to_string(img_patch))
 

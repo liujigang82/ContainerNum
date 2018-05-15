@@ -5,7 +5,7 @@ import glob
 pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 
 
-def auto_canny(image, sigma=0.33):
+def auto_canny(image, sigma=0.33): #0.33
     # compute the median of the single channel pixel intensities
     v = np.median(image)
 
@@ -13,7 +13,7 @@ def auto_canny(image, sigma=0.33):
     lower = int(max(0, (1.0 - sigma) * v))
     upper = int(min(255, (1.0 + sigma) * v))
     edged = cv2.Canny(image, lower, upper)
-
+    cv2.imshow("edges", edged)
     # return the edged image
     return edged
 
@@ -34,6 +34,7 @@ def preprocessing(img):
     #cv2.imshow("after denoise", img)
     # color to gray
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    cv2.imshow("gray", gray)
     # perspective transform
     #gray = deskew(gray.copy(), compute_skew(gray))
     #cv2.imshow("after deskew", gray)
@@ -41,7 +42,7 @@ def preprocessing(img):
     #binary
     #edges = cv2.Canny(gray, 50, 150, apertureSize=3)
     edges = auto_canny(gray)
-    #cv2.imshow("edge",edges)
+    cv2.imshow("edge",edges)
     #(threshold, im_bw) = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
     return edges
 
@@ -91,8 +92,8 @@ def compute_perspective_matrix(vertical_params, horizontal_params):
     return pers_matrix
 
 #Your image path i-e receipt path
-'''
-img = cv2.imread('../img/IMG_4693.jpg')
+
+img = cv2.imread('../img/0024.jpg')
 img  = resize_im(img)
 
 gray_vis = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -101,15 +102,15 @@ gray = preprocessing(img)
 # detect regions in gray scale image
 height, width = gray.shape
 # lines = cv2.HoughLinesP(gray, rho = 1, theta=np.pi/180, threshold= 100, minLineLength=height /2.0, maxLineGap=30)
-lines = cv2.HoughLines(gray, rho=1, theta=np.pi / 180, threshold=200)
+lines = cv2.HoughLines(gray, rho=1, theta=np.pi / 180, threshold=160)
 vertical_params = []
 horizontal_params = []
 #print("lines:", lines)
-
+print("lines", lines)
 for line in lines:
     #print("line:", line)
     for rho, theta in line:
-        if theta * 180 / np.pi < 30 or theta * 180 / np.pi > 150:
+        if theta * 180 / np.pi < 20 or theta * 180 / np.pi > 160:
             vertical_params.append([rho, theta])
 
             a = np.cos(theta)
@@ -122,7 +123,7 @@ for line in lines:
             x2 = int(x0 - 1000 * (-b))
             y2 = int(y0 - 1000 * (a))
             cv2.line(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
-        if theta * 180 / np.pi > 60 and theta * 180 / np.pi < 125:
+        if theta * 180 / np.pi > 70 and theta * 180 / np.pi < 110:
             # print("horizontal~~~~")
             horizontal_params.append([rho, theta])
             a = np.cos(theta)
@@ -147,9 +148,9 @@ if len(vertical_params)>1 and len(horizontal_params) > 1:
     cv2.imshow("perspective", dst)
 
 cv2.waitKey(33)
+
+
 '''
-
-
 i = 0
 for file in glob.glob("../img/*.jpg"):
     i = i+1
@@ -204,6 +205,24 @@ for file in glob.glob("../img/*.jpg"):
         cv2.imwrite("deskewed_%04d.jpg"%i, img)
 
     cv2.waitKey(33)
+
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 '''
 #detect regions in gray scale image

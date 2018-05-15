@@ -148,7 +148,25 @@ for contour in np.array(contours):
 #this is used to find only text regions, remaining are ignored
 text_only = cv2.bitwise_and(gray, gray, mask=mask)
 '''
-
-
-
+'''
+initial image patch derivation
+# print(tesseract_data)
+for i in range(len(tesseract_data["text"])):
+    itemList = tesseract_data["text"]
+    if itemList[i] in result and len(itemList[i]) >= 2 and is_text(
+            itemList[i]):
+        h_roi = int(tesseract_data["height"][i] + 15)
+        w_roi = int(h_roi * 5.5)
+        left = tesseract_data["left"][i] - 15
+        top = tesseract_data["top"][i] - 15
+        img_patch = canvas3[top:top + h_roi + 15, left:left + w_roi + 15]
+        # img_patch = cv2.equalizeHist(img_patch)
+        cv2.imshow("patch", img_patch)
+        cv2.imwrite("tmp.jpg", img_patch)
+        # tmp = drawRect.drawRect(img_patch)
+        # kmeans.kmeans(img_patch)
+        # kmeans.kmeans(img_patch)
+        # print("refined results:", pytesseract.image_to_string(kmeans.kmeans(img_patch)))
+        print("refined results:", pytesseract.image_to_string(img_patch))
+'''
 

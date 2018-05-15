@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import pytesseract
 from preprocessing.preprocessing import get_perspective_transformed_im
+from utils import get_image_patch, calculateAngle
 import glob
 #sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
 #import textRec, drawRect, kmeans, get_contours
@@ -13,8 +14,16 @@ mser = cv2.MSER_create()
 mser.setMaxArea(700)
 
 # global para
-threshold_width = 1/3
+threshold_width = 1/5
 threshold_height = 1/3
+
+def intersection(a,b):
+  x = max(a[0], b[0])
+  y = max(a[1], b[1])
+  w = min(a[0]+a[2], b[0]+b[2]) - x
+  h = min(a[1]+a[3], b[1]+b[3]) - y
+  if w<0 or h<0: return (0,0,0,0)
+  return (x, y, w, h)
 
 
 def not_inside(bbox, coords):
@@ -26,6 +35,8 @@ def not_inside(bbox, coords):
             # compare box and bbox
             if box[0]<= bbox[0] and box[1] <= bbox[1] \
                 and box[0]+box[2]>=bbox[0]+bbox[2] and box[1]+box[3] >= bbox[1]+bbox[3]:
+            #intersects = intersection(box, bbox)
+            #if intersects != (0, 0, 0, 0):
                 return False
         return True
 
@@ -37,9 +48,15 @@ def contour_rec_ara(contour):
 
 
 def str_confidence(str):
-    numbers = sum(c.isdigit() for c in str)
-    words = sum(c.isalpha() for c in str)
-    spaces = sum(c.isspace() for c in str)
+    str_list = str.split(" ")
+    numbers = 0
+    words = 0
+    for item in str_list:
+        if len(item) == 4 and item[len(item)-1].lower() == "u":
+            return 0
+        numbers = sum(c.isdigit() for c in item) if sum(c.isdigit() for c in item)>numbers else numbers
+        words = sum(c.isalpha() for c in item) if sum(c.isalpha() for c in item) > words else words
+
     return abs(4-words) +abs(7-numbers)
 
 
@@ -47,7 +64,24 @@ def result_refine(str):
     for char in str:
         if not char.isdigit() and not char.isalpha() and not char.isspace():
             str = str.replace(char, "")
-    return str
+    try:
+        index = str.lower().index("u")
+    except:
+        index = 0
+    if index == 0:
+        try:
+            index = str.lower().index("v")
+        except:
+            index = 0
+
+    text = str[0:index+1]
+    digits = str[index+1:len(str)]
+
+    text = [character for character in text if character.isalpha()]
+    text = "".join(item for item in text)
+    digits = [digit for digit in digits if digit.isdigit()]
+    digits = "".join(item for item in digits)
+    return text + " " + digits
 
 
 def is_text(str):
@@ -73,7 +107,7 @@ def preprocessing_im(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # perspective transform
     gray = get_perspective_transformed_im(gray)
-    #cv2.imshow("perspective", gray)
+    cv2.imshow("perspective", gray)
     #cv2.imshow("after deskew", gray)
     #textRec.text_detection_MSER(gray)
     #binary
@@ -91,7 +125,7 @@ def postprocessing(gray):
     for coord in coordinates:
         bbox = cv2.boundingRect(coord)
         x, y, w, h = bbox
-        if x > width * threshold_width and y < height * threshold_height and not_inside(bbox, coords):
+        if x > width * threshold_width and y < height * threshold_height and w  <width/15 and h < height/15 and not_inside(bbox, coords):
             coords.append(coord)
 
     canvas3 = np.zeros_like(gray)
@@ -100,8 +134,9 @@ def postprocessing(gray):
         yy = cnt[:, 1]
         color = 255
         canvas3[yy, xx] = color
-    #cv2.imshow("canvas", canvas3)
 
+    canvas3 = cv2.GaussianBlur(canvas3, (3, 3), 0)
+    cv2.imshow("canvas", canvas3)
     image_str = pytesseract.image_to_string(canvas3)
     #tesseract_data = pytesseract.image_to_data(canvas3, output_type="dict")
     min_conf = 100
@@ -113,6 +148,13 @@ def postprocessing(gray):
             min_conf = cur_conf
     result = result_refine(result)
     print("results:", result)
+
+    tesseract_data = pytesseract.image_to_data(canvas3, output_type="dict")
+    canvas3 = get_image_patch(canvas3, tesseract_data, result)
+    cv2.imshow("imagepatch", canvas3)
+    canvas3 = calculateAngle(canvas3)
+    refined_result = pytesseract.image_to_string(canvas3)
+    print("refined results:", refined_result)
     '''
     for i in range(len(tesseract_data["text"])):
         itemList = tesseract_data["text"]
@@ -130,7 +172,7 @@ def postprocessing(gray):
             #print("refined results:", pytesseract.image_to_string(kmeans.kmeans(img_patch)))
             print("refined results:", pytesseract.image_to_string(img_patch))
     '''
-    return result
+    return  refined_result
 '''
 
 for file in glob.glob("img/*.jpg"):
