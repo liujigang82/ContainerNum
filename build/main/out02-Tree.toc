@@ -1,7 +1,0 @@
-('c:\\users\\jigang\\appdata\\local\\programs\\python\\python36\\lib\\site-packages\\certifi-2018.1.18-py3.6.egg',
- None,
- {'*.so', 'EGG-INFO', '*.pyc', '*.pyo', '*.py', '*.pyd'},
- 'DATA',
- [('certifi\\cacert.pem',
-   'c:\\users\\jigang\\appdata\\local\\programs\\python\\python36\\lib\\site-packages\\certifi-2018.1.18-py3.6.egg\\certifi\\cacert.pem',
-   'DATA')])

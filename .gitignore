@@ -3,6 +3,7 @@
 *.pyc
 .venv
 dist
+build
 env
 Tesseract-OCR
 test
