@@ -25,7 +25,6 @@ class MainWindow(QWidget):
         grid = QGridLayout()
         grid.setSpacing(1)
 
-
         openSingle = QAction(QIcon('icon/image.png'), '打开一张照片', self)
         openSingle.setStatusTip('打开一张图片')
         openSingle.triggered.connect(self.openFileNameDialog)

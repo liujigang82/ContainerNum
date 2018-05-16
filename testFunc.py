@@ -272,7 +272,7 @@ for file in glob.glob("img/*.jpg"):
     print(file, ":", postprocessing(gray))
     cv2.waitKey(0)
 '''
-img = cv2.imread("img/0088.jpg")
+img = cv2.imread("img/0023.jpg")
 cv2.imshow("image", img)
 gray = preprocessing_im(img)
 postprocessing(gray)

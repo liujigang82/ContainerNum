@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8af36d18-2a7c-45b7-8ded-2946a35f6625" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/main/base_library.zip" afterPath="$PROJECT_DIR$/build/main/base_library.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/main/out00-PKG.pkg" afterPath="$PROJECT_DIR$/build/main/out00-PKG.pkg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/main/out00-PYZ.pyz" afterPath="$PROJECT_DIR$/build/main/out00-PYZ.pyz" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/main/out00-Analysis.toc" afterPath="$PROJECT_DIR$/build/main/out00-Analysis.toc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/main/out00-EXE.toc" afterPath="$PROJECT_DIR$/build/main/out00-EXE.toc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/main/out00-PKG.toc" afterPath="$PROJECT_DIR$/build/main/out00-PKG.toc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/main/out00-PYZ.toc" afterPath="$PROJECT_DIR$/build/main/out00-PYZ.toc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/main/warnmain.txt" afterPath="$PROJECT_DIR$/build/main/warnmain.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/main/xref-main.html" afterPath="$PROJECT_DIR$/build/main/xref-main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/numrec.py" afterPath="$PROJECT_DIR$/numrec.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/preprocessing/preprocessing.py" afterPath="$PROJECT_DIR$/preprocessing/preprocessing.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results.txt" afterPath="$PROJECT_DIR$/results.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testFunc.py" afterPath="$PROJECT_DIR$/testFunc.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils.py" afterPath="$PROJECT_DIR$/utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/findLines.py" afterPath="$PROJECT_DIR$/utils/findLines.py" />
     </list>
     <ignored path="ContainerNum.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,12 +30,12 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/ContainerNum$textRec.coverage" NAME="textRec Coverage Results" MODIFIED="1525919407883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/ContainerNum$drawRect.coverage" NAME="drawRect Coverage Results" MODIFIED="1526043795216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/ContainerNum$testFunc.coverage" NAME="testFunc Coverage Results" MODIFIED="1526475001851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ContainerNum$testFunc.coverage" NAME="testFunc Coverage Results" MODIFIED="1526478134181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ContainerNum$get_contours.coverage" NAME="get_contours Coverage Results" MODIFIED="1525954097817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/ContainerNum$calculateAngle.coverage" NAME="calculateAngle Coverage Results" MODIFIED="1526368879954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/ContainerNum$preprocessing.coverage" NAME="preprocessing Coverage Results" MODIFIED="1526372622050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/preprocessing" />
     <SUITE FILE_PATH="coverage/ContainerNum$imageProcessing.coverage" NAME="imageProcessing Coverage Results" MODIFIED="1526379418428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/ContainerNum$main.coverage" NAME="main Coverage Results" MODIFIED="1526475110803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ContainerNum$main.coverage" NAME="main Coverage Results" MODIFIED="1526478153647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ContainerNum$testpytesseract.coverage" NAME="testpytesseract Coverage Results" MODIFIED="1526368625379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/ContainerNum$utils.coverage" NAME="utils Coverage Results" MODIFIED="1526363976844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ContainerNum$descrwing.coverage" NAME="descrwing Coverage Results" MODIFIED="1526279376534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
@@ -47,14 +52,14 @@
     <favorites_list name="ContainerNum" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5050234">
+    <splitter split-orientation="horizontal" split-proportion="0.6590757">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="numrec.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/numrec.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2387">
-                  <caret line="152" column="37" selection-start-line="152" selection-start-column="37" selection-end-line="152" selection-end-column="37" />
+                <state relative-caret-position="337">
+                  <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                     <element signature="e#614#783#0" expanded="false" />
@@ -112,8 +117,8 @@
           <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="437">
-                  <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+                <state relative-caret-position="318">
+                  <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
@@ -148,8 +153,8 @@
           <file leaf-file-name="testFunc.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/testFunc.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="262">
-                  <caret line="273" column="3" selection-start-line="273" selection-start-column="3" selection-end-line="273" selection-end-column="3" />
+                <state relative-caret-position="519">
+                  <caret line="277" column="20" selection-start-line="277" selection-start-column="20" selection-end-line="277" selection-end-column="20" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                     <element signature="e#638#843#0" expanded="false" />
@@ -263,11 +268,11 @@
         <option value="$PROJECT_DIR$/utils/calculateAngle.py" />
         <option value="$PROJECT_DIR$/utils/imageProcessing.py" />
         <option value="$PROJECT_DIR$/utils/findLines.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/preprocessing/preprocessing.py" />
         <option value="$PROJECT_DIR$/utils.py" />
-        <option value="$PROJECT_DIR$/testFunc.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/numrec.py" />
+        <option value="$PROJECT_DIR$/testFunc.py" />
       </list>
     </option>
   </component>
@@ -687,8 +692,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.numrec" />
-        <item index="2" class="java.lang.String" itemvalue="Python.testFunc" />
+        <item index="1" class="java.lang.String" itemvalue="Python.testFunc" />
+        <item index="2" class="java.lang.String" itemvalue="Python.numrec" />
         <item index="3" class="java.lang.String" itemvalue="Python.findLines" />
         <item index="4" class="java.lang.String" itemvalue="Python.imageProcessing" />
       </list>
@@ -721,7 +726,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1723356" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32086167" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17687075" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -1078,10 +1083,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/crop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="242" column="45" selection-start-line="242" selection-start-column="33" selection-end-line="242" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testFunc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="273" column="3" selection-start-line="273" selection-start-column="3" selection-end-line="273" selection-end-column="3" />
+        <state relative-caret-position="519">
+          <caret line="277" column="20" selection-start-line="277" selection-start-column="20" selection-end-line="277" selection-end-column="20" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#638#843#0" expanded="false" />
@@ -1094,8 +1107,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/numrec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2387">
-          <caret line="152" column="37" selection-start-line="152" selection-start-column="37" selection-end-line="152" selection-end-column="37" />
+        <state relative-caret-position="337">
+          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#614#783#0" expanded="false" />
@@ -1104,18 +1117,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/crop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="242" column="45" selection-start-line="242" selection-start-column="33" selection-end-line="242" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+        <state relative-caret-position="318">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

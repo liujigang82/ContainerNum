@@ -112,7 +112,7 @@ def preprocessing_im(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # perspective transform
     gray = get_perspective_transformed_im(gray)
-    cv2.imshow("perspective", gray)
+    #cv2.imshow("perspective", gray)
     #cv2.imshow("after deskew", gray)
     #textRec.text_detection_MSER(gray)
     #binary
@@ -141,7 +141,7 @@ def postprocessing(gray):
         canvas3[yy, xx] = color
 
     canvas3 = cv2.GaussianBlur(canvas3, (3, 3), 0)
-    cv2.imshow("canvas", canvas3)
+    #cv2.imshow("canvas", canvas3)
     image_str = pytesseract.image_to_string(canvas3)
     #tesseract_data = pytesseract.image_to_data(canvas3, output_type="dict")
 
@@ -150,7 +150,7 @@ def postprocessing(gray):
 
     tesseract_data = pytesseract.image_to_data(canvas3, output_type="dict")
     canvas3 = get_image_patch(canvas3, tesseract_data, result)
-    cv2.imshow("imagepatch", canvas3)
+    #cv2.imshow("imagepatch", canvas3)
     canvas3 = calculateAngle(canvas3)
     refined_result = pytesseract.image_to_string(canvas3)
     print(refined_result)
