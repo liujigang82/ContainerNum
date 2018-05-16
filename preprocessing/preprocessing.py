@@ -38,12 +38,13 @@ def get_horizontal_vertical_lines(gray):
     height, width = gray.shape
     lines = cv2.HoughLines(gray, rho=1, theta =np.pi/180, threshold = 160)
 
-    for line in lines:
-        for rho, theta in line:
-            if theta*180/np.pi < angle_threshold_line_detection or theta*180/np.pi > 180 - angle_threshold_line_detection:
-                    vertical_params.append([rho, theta])
-            if theta*180/np.pi > 90-angle_threshold_line_detection and theta*180/np.pi < 90 + angle_threshold_line_detection:
-                horizontal_params.append([rho, theta])
+    if lines is not None:
+        for line in lines:
+            for rho, theta in line:
+                if theta*180/np.pi < angle_threshold_line_detection or theta*180/np.pi > 180 - angle_threshold_line_detection:
+                        vertical_params.append([rho, theta])
+                if theta*180/np.pi > 90-angle_threshold_line_detection and theta*180/np.pi < 90 + angle_threshold_line_detection:
+                    horizontal_params.append([rho, theta])
     return vertical_params, horizontal_params
 
 

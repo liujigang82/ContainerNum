@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import pytesseract
 from preprocessing.preprocessing import get_perspective_transformed_im
-from utils import get_image_patch, calculateAngle
+from utils import get_image_patch, calculateAngle, find_index_word
 import glob
 #sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
 #import textRec, drawRect, kmeans, get_contours
@@ -11,7 +11,7 @@ import glob
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'
 mser = cv2.MSER_create()
-mser.setMaxArea(700)
+mser.setMaxArea(750)
 
 # global para
 threshold_width = 1/5
@@ -33,10 +33,10 @@ def not_inside(bbox, coords):
         for coord in coords:
             box = cv2.boundingRect(coord)
             # compare box and bbox
-            if box[0]<= bbox[0] and box[1] <= bbox[1] \
-                and box[0]+box[2]>=bbox[0]+bbox[2] and box[1]+box[3] >= bbox[1]+bbox[3]:
-            #intersects = intersection(box, bbox)
-            #if intersects != (0, 0, 0, 0):
+            #if box[0]<= bbox[0] and box[1] <= bbox[1] \
+            #    and box[0]+box[2]>=bbox[0]+bbox[2] and box[1]+box[3] >= bbox[1]+bbox[3]:
+            intersects = intersection(box, bbox)
+            if intersects != (0, 0, 0, 0):
                 return False
         return True
 
@@ -60,20 +60,25 @@ def str_confidence(str):
     return abs(4-words) +abs(7-numbers)
 
 
-def result_refine(str):
+def result_refine(image_str):
+    min_conf = 100
+    str = ""
+    for line in image_str.splitlines():
+        cur_conf = str_confidence(line)
+        if cur_conf < min_conf:
+            str = line
+            min_conf = cur_conf
+
     for char in str:
         if not char.isdigit() and not char.isalpha() and not char.isspace():
             str = str.replace(char, "")
-    try:
-        index = str.lower().index("u")
-    except:
-        index = 0
-    if index == 0:
-        try:
-            index = str.lower().index("v")
-        except:
-            index = 0
 
+    str, index = find_index_word(str)
+    index = 0
+    for i in range(len(str)):
+        if not str[i].isalpha():
+            index = i
+            break
     text = str[0:index+1]
     digits = str[index+1:len(str)]
 
@@ -139,14 +144,8 @@ def postprocessing(gray):
     cv2.imshow("canvas", canvas3)
     image_str = pytesseract.image_to_string(canvas3)
     #tesseract_data = pytesseract.image_to_data(canvas3, output_type="dict")
-    min_conf = 100
-    result = ""
-    for line in image_str.splitlines():
-        cur_conf = str_confidence(line)
-        if cur_conf < min_conf:
-            result = line
-            min_conf = cur_conf
-    result = result_refine(result)
+
+    result = result_refine(image_str)
     print("results:", result)
 
     tesseract_data = pytesseract.image_to_data(canvas3, output_type="dict")
@@ -154,6 +153,8 @@ def postprocessing(gray):
     cv2.imshow("imagepatch", canvas3)
     canvas3 = calculateAngle(canvas3)
     refined_result = pytesseract.image_to_string(canvas3)
+    print(refined_result)
+    refined_result = result_refine(refined_result)
     print("refined results:", refined_result)
     '''
     for i in range(len(tesseract_data["text"])):

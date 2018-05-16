@@ -93,7 +93,7 @@ def compute_perspective_matrix(vertical_params, horizontal_params):
 
 #Your image path i-e receipt path
 
-img = cv2.imread('../img/0024.jpg')
+img = cv2.imread('../img/0011.jpg')
 img  = resize_im(img)
 
 gray_vis = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -102,40 +102,31 @@ gray = preprocessing(img)
 # detect regions in gray scale image
 height, width = gray.shape
 # lines = cv2.HoughLinesP(gray, rho = 1, theta=np.pi/180, threshold= 100, minLineLength=height /2.0, maxLineGap=30)
-lines = cv2.HoughLines(gray, rho=1, theta=np.pi / 180, threshold=160)
+lines = cv2.HoughLines(gray, rho=1, theta=np.pi / 180, threshold=80)
 vertical_params = []
 horizontal_params = []
 #print("lines:", lines)
 print("lines", lines)
 for line in lines:
+
     #print("line:", line)
     for rho, theta in line:
+        a = np.cos(theta)
+        b = np.sin(theta)
+        # print("x value when y = 200:", (rho-b*200)/a)
+        x0 = a * rho
+        y0 = b * rho
+        x1 = int(x0 + 1000 * (-b))
+        y1 = int(y0 + 1000 * (a))
+        x2 = int(x0 - 1000 * (-b))
+        y2 = int(y0 - 1000 * (a))
+        cv2.line(img, (x1, y1), (x2, y2), (255, 0, 0), 2)
         if theta * 180 / np.pi < 20 or theta * 180 / np.pi > 160:
             vertical_params.append([rho, theta])
-
-            a = np.cos(theta)
-            b = np.sin(theta)
-            # print("x value when y = 200:", (rho-b*200)/a)
-            x0 = a * rho
-            y0 = b * rho
-            x1 = int(x0 + 1000 * (-b))
-            y1 = int(y0 + 1000 * (a))
-            x2 = int(x0 - 1000 * (-b))
-            y2 = int(y0 - 1000 * (a))
             cv2.line(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
         if theta * 180 / np.pi > 70 and theta * 180 / np.pi < 110:
             # print("horizontal~~~~")
             horizontal_params.append([rho, theta])
-            a = np.cos(theta)
-            b = np.sin(theta)
-            # print("x value when y = 200:", (rho - b * 200) / a)
-            # x_val.append((rho - b * 200) / a)
-            x0 = a * rho
-            y0 = b * rho
-            x1 = int(x0 + 1000 * (-b))
-            y1 = int(y0 + 1000 * (a))
-            x2 = int(x0 - 1000 * (-b))
-            y2 = int(y0 - 1000 * (a))
             cv2.line(img, (x1, y1), (x2, y2), (0, 0, 255), 2)
 #vertical_params = np.array(vertical_params)
 print("vertical:", vertical_params)

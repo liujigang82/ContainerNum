@@ -44,8 +44,21 @@ def containDigAlph(str):
     return False
 
 
+def find_index_word(str):
+    length = 0
+    word = ""
+    sub_str_list = str.split(" ")
+    for sub in sub_str_list:
+        if is_text(sub) and len(sub) > length:
+            length = len(sub)
+            word = sub
+    if length > 0:
+        index = str.index(word)
+        str = str[index:len(str)]
+    return str, len(word)-1
+
 def get_image_patch(canvas, tesseract_data, result):
-    t_boundary = 5
+    t_boundary = 7
     for i in range(len(tesseract_data["text"])):
         itemList = tesseract_data["text"]
         text = [character for character in itemList[i] if character.isalpha()]

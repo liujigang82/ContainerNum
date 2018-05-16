@@ -17,6 +17,8 @@ class MainWindow(QWidget):
         self.width = 600
         self.height = 800
     def initUI(self):
+
+        self.setWindowIcon(QIcon('icon/container.png'))
         self.textEdit = QTextEdit(self)
         self.label = QLabel()
         self.label.resize(600, 800)
@@ -32,6 +34,9 @@ class MainWindow(QWidget):
         openMulti.setStatusTip('打开照片文件夹')
         openMulti.triggered.connect(self.openFolderDialog)
 
+        clearText = QAction(QIcon('icon/clear.png'), '清空', self)
+        clearText.setStatusTip('清空文字')
+        clearText.triggered.connect(self.clearText)
         #self.statusBar()
 
         self.menubar = QMenuBar(self)
@@ -42,6 +47,7 @@ class MainWindow(QWidget):
         self.toolBar = QToolBar()
         self.toolBar.addAction(openSingle)
         self.toolBar.addAction(openMulti)
+        self.toolBar.addAction(clearText)
         '''
         toolbar = self.toolBar.addToolBar('打开一张照片')
         toolbar.addAction(openSingle)
@@ -60,6 +66,8 @@ class MainWindow(QWidget):
         self.setWindowTitle('集装箱号码识别 v1')
         self.show()
 
+    def clearText(self):
+        self.textEdit.clear()
 
     def openFileNameDialog(self):
         self.textEdit.append("识别中...")
@@ -73,7 +81,7 @@ class MainWindow(QWidget):
             pixmap1 = pixmap1.scaled(self.width*2/3, self.height*2/3)
             self.label.setPixmap(pixmap1)
             rec_results = num_rec(fileName)
-            self.textEdit.append(os.path.basename(os.path.normpath(fileName)) + ": result: "+rec_results)
+            self.textEdit.append(os.path.basename(os.path.normpath(fileName)) + "柜号： "+rec_results)
 
     def openFolderDialog(self):
         self.textEdit.append("识别中...")
@@ -87,7 +95,7 @@ class MainWindow(QWidget):
             #self.label.setPixmap(pixmap1)
             #self.label.setMinimumSize(1, 1)
             rec_results = num_rec(file)
-            self.textEdit.append(os.path.basename(os.path.normpath(file)) + ": "+rec_results)
+            self.textEdit.append(os.path.basename(os.path.normpath(file)) + "柜号： "+ rec_results)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
