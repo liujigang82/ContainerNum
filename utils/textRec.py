@@ -37,7 +37,7 @@ def text_detection_MSER(img):
         color = colors[np.random.choice(len(colors))]
         canvas1[yy, xx] = color
         canvas3[yy, xx] = color
-    cv2.imshow('result',canvas3)
+    #cv2.imshow('result',canvas3)
     cv2.imshow("canvas1", canvas1)
 
 

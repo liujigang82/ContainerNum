@@ -90,3 +90,10 @@ def get_perspective_transformed_im(gray):
             return gray
         gray = cv2.warpPerspective(gray, M , (w, h))
     return gray
+
+def resize_im(image):
+    height, width, depth = image.shape
+    imgScale = 600/width
+    newX,newY = image.shape[1]*imgScale, image.shape[0]*imgScale
+    image = cv2.resize(image, (int(newX),int(newY)))
+    return image

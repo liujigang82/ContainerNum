@@ -62,7 +62,7 @@ class MainWindow(QWidget):
 
         self.setLayout(grid)
         self.setGeometry(300, 300, 800,600)
-        self.setWindowTitle('集装箱号码识别 v1')
+        self.setWindowTitle('集装箱柜号识别 v1')
         self.show()
 
     def clearText(self):
@@ -75,6 +75,7 @@ class MainWindow(QWidget):
         fileName, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
                                                   "jpg Files (*.jpg)", options=options)
 
+        print(fileName)
         if fileName:
             pixmap1 = QPixmap(fileName)
             pixmap1 = pixmap1.scaled(self.width*2/3, self.height*2/3)

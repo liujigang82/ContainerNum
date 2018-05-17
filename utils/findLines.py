@@ -93,7 +93,7 @@ def compute_perspective_matrix(vertical_params, horizontal_params):
 
 #Your image path i-e receipt path
 
-img = cv2.imread('../img/0011.jpg')
+img = cv2.imread('../img/0082.jpg')
 img  = resize_im(img)
 
 gray_vis = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

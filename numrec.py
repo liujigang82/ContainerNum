@@ -193,8 +193,8 @@ print("after preprocessing...")
 postprocessing(gray)
 '''
 def num_rec(file):
-    img = cv2.imread(file)
-    #cv2.imshow("image", img)
+    img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
+    cv2.imshow("image", img)
     gray = preprocessing_im(img)
     print("after preprocessing...")
     return postprocessing(gray)
