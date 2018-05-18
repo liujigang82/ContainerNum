@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from preprocessing import auto_canny, not_inside, contour_rec_ara, get_perspective_transformed_im
+from preprocessing import auto_canny, not_inside, contour_rec_ara
 
 # global para
 threshold_width = 1/4
@@ -22,8 +22,6 @@ def detect(c):
     peri = cv2.arcLength(c, True)
     approx = cv2.approxPolyDP(c, 0.04 * peri, True)
 
-    if cv2.isContourConvex(approx) and abs(cv2.contourArea(c))<80:
-        return shape
     # if the shape is a triangle, it will have 3 vertices
     if len(approx) == 3:
         shape = "triangle"
@@ -57,10 +55,10 @@ def detect(c):
     return shape
 
 #82,
-imageName = "../img/0007.jpg"
+imageName = "../img/0004.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
-
+#img = cv2.imread(imageName.encode('gbk'),-1)
 img = resize_im(img)
 
 '''
@@ -69,26 +67,23 @@ img_yuv[:, :, 0] = cv2.equalizeHist(img_yuv[:, :, 0])
 img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
 '''
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-gray = get_perspective_transformed_im(gray)
+edges = auto_canny(gray)
 
 cv2.imshow("image", gray)
-
+#cv2.imshow("binary", edges)
 
 #im2, contours, hierarchy = cv2.findContours(edges.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 
-
 mser = cv2.MSER_create()
-#mser.setMinArea(50)
+mser.setMinArea(50)
 mser.setMaxArea(750)
 contours, bboxes = mser.detectRegions(gray)
-
 
 (height, width) = gray.shape[:2]
 # loop over the contours
 coords = []
-contours = sorted(contours, key=contour_rec_ara, reverse=True)
 
+contours = sorted(contours, key=contour_rec_ara, reverse=True)
 for c in contours:
     # compute the center of the contour, then detect the name of the
     # shape using only the contour
@@ -100,26 +95,15 @@ for c in contours:
     #if float(w/h) <= 1.5:
      #   cv2.drawContours(img, [c], -1, (255, 0, 0), 1)
 
-    shape = detect(c)
-    if x > width * threshold_width and y < height * threshold_height and float(w / h) <= 1 and float(w / h) >= 0.25 and w  < width/15 and h < height/15 and not_inside(bbox, coords) :
+    if x > width * threshold_width and y < height * threshold_height and float(w / h) <= 1 and float(w / h) >= 0.25 and w  < width/15 and h < height/15 and not_inside(bbox, coords):
         coords.append(c)
         cv2.drawContours(img, [c], -1, (0, 255,0), 1)
 
+    #shape = detect(c)
+    #if  shape == "square" or shape == "rectangle":
+        #cv2.drawContours(img, [c], -1, (0, 255, 0), 2)
 
-canvas = np.zeros_like(gray)
-for cnt in coords:
-    xx = cnt[:, 0]
-    yy = cnt[:, 1]
-    color = 255
-    canvas[yy, xx] = color
-
-cv2.imshow("canvas", canvas)
-backtorgb = cv2.cvtColor(gray,cv2.COLOR_GRAY2RGB)
-im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
-for c in contours:
-    shape = detect(c)
-    if  shape == "square" or shape == "rectangle":
-       cv2.drawContours(backtorgb, [c], -1, (0, 0, 255), 2)
-
-cv2.imshow("Image", backtorgb)
+    # show the output image
+print(len(coords))
+cv2.imshow("Image", img)
 cv2.waitKeyEx(0)

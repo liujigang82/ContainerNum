@@ -2,7 +2,7 @@ import sys
 import cv2
 import numpy as np
 import pytesseract
-from preprocessing.preprocessing import get_perspective_transformed_im
+from preprocessing.preprocessing import get_perspective_transformed_im, detect_shape
 from utils import get_image_patch, calculateAngle, find_index_word
 import glob
 #sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
@@ -199,4 +199,42 @@ def num_rec(file):
     print("after preprocessing...")
     return postprocessing(gray)
 
+def find_rect(file):
+    img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
+    gray = preprocessing_im(img)
 
+    mser = cv2.MSER_create()
+    mser.setMinArea(50)
+    mser.setMaxArea(750)
+    contours, bboxes = mser.detectRegions(gray)
+
+    coords = []
+    contours = sorted(contours, key=contour_rec_ara, reverse=True)
+
+    (height, width) = gray.shape[:2]
+    backtorgb = cv2.cvtColor(gray, cv2.COLOR_GRAY2RGB)
+    for c in contours:
+        bbox = cv2.boundingRect(c)
+        x, y, w, h = bbox
+        if x > width * threshold_width and y < height * threshold_height and float(w / h) <= 1 and float(
+                        w / h) >= 0.25 and w < width / 15 and h < height / 15 and not_inside(bbox, coords):
+            coords.append(c)
+
+    canvas = np.zeros_like(gray)
+    for cnt in coords:
+        xx = cnt[:, 0]
+        yy = cnt[:, 1]
+        color = 255
+        canvas[yy, xx] = color
+
+    cv2.imshow("canvas", canvas)
+
+    # edges = auto_canny(canvas)
+    # cv2.imshow("binary", edges)
+    im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    for c in contours:
+        shape = detect_shape(c)
+        if shape == "square" or shape == "rectangle":
+            cv2.drawContours(backtorgb, [c], -1, (0, 0, 255), 2)
+
+    cv2.imshow("Image", backtorgb)

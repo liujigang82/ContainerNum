@@ -7,24 +7,23 @@ import cv2 as cv
 import numpy as np
 
 
-img = cv.imread("../img/0014.jpg")
+img = cv.imread("../img/0002.jpg")
 # for visualization
 vis = img.copy()
 
-
 textSpotter = cv.text.TextDetectorCNN_create("textbox.prototxt", "TextBoxes_icdar13.caffemodel")
 rects, outProbs = textSpotter.detect(img);
-vis = img.copy()
+vis2 = img.copy()
 thres = 0.1
 
 for r in range(np.shape(rects)[0]):
     if outProbs[r] > thres:
         rect = rects[r]
-        cv.rectangle(vis, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (255, 0, 0), 2)
+        cv.rectangle(vis2, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (255, 0, 0), 2)
 
-cv.imshow("Text detection result2", vis)
+cv.imshow("Text detection result2", vis2)
+
 '''
-
 gray = cv.cvtColor(vis, cv.COLOR_BGR2GRAY)
 erc1 = cv.text.loadClassifierNM1('./trained_classifierNM1.xml')
 er1 = cv.text.createERFilterNM1(erc1)
@@ -48,7 +47,7 @@ cv.imshow("Text detection result22", img)
 
 
 
-'''
+
 
 # Extract channels to be processed individually
 channels = cv.text.computeNMChannels(img)
@@ -76,11 +75,11 @@ for channel in channels:
     # Visualization
     for r in range(0, np.shape(rects)[0]):
         rect = rects[r]
-        cv.rectangle(vis, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (0, 0, 0), 2)
-        cv.rectangle(vis, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (255, 255, 255), 1)
+        #cv.rectangle(vis, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (0, 0, 0), 2)
+        cv.rectangle(vis, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (0, 0, 255), 1)
 
 # Visualization
 cv.imshow("Text detection result", vis)
 
-'''
+
 cv.waitKey(0)

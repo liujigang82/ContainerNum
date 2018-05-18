@@ -5,7 +5,7 @@ import cv2
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import  QWidget, QTextEdit, QAction, QApplication, QFileDialog, QGridLayout, QLabel,QMenuBar, QToolBar, QVBoxLayout
 from PyQt5.QtGui import QIcon, QPixmap
-from numrec import num_rec
+from numrec import num_rec, find_rect
 
 
 
@@ -80,7 +80,9 @@ class MainWindow(QWidget):
             pixmap1 = QPixmap(fileName)
             pixmap1 = pixmap1.scaled(self.width*2/3, self.height*2/3)
             self.label.setPixmap(pixmap1)
-            rec_results = num_rec(fileName)
+            rec_results = fileName
+            #rec_results = num_rec(fileName)
+            find_rect(fileName)
             self.textEdit.append(os.path.basename(os.path.normpath(fileName)) + "柜号： "+rec_results)
 
     def openFolderDialog(self):
