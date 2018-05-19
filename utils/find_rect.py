@@ -18,7 +18,6 @@ def detect(c):
     # initialize the shape name and approximate the contour
     shape = "unidentified"
 
-
     peri = cv2.arcLength(c, True)
     approx = cv2.approxPolyDP(c, 0.04 * peri, True)
 
@@ -40,10 +39,6 @@ def detect(c):
         # equal to one, otherwise, the shape is a rectangle
         #shape = "square" if ar >= 0.95 and ar <= 1.05 else "rectangle"
         shape = "square" if ar >= 0.50 and ar <= 0.8 else "rectangle"
-        #if shape == "square" or shape == "rectangle":
-         #   print("~~~~~~~~~~:",  peri)
-            #print("points:", c)
-
 
     # if the shape is a pentagon, it will have 5 vertices
     elif len(approx) == 5:
@@ -57,11 +52,14 @@ def detect(c):
     return shape
 
 #82,
-imageName = "../img/0007.jpg"
+imageName = "../img/0074.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 
 img = resize_im(img)
+
+
+cv2.imshow("image1", img)
 
 '''
 img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
@@ -72,7 +70,8 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 gray = get_perspective_transformed_im(gray)
 
-cv2.imshow("image", gray)
+smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
+gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
 
 
 #im2, contours, hierarchy = cv2.findContours(edges.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
@@ -90,20 +89,12 @@ coords = []
 contours = sorted(contours, key=contour_rec_ara, reverse=True)
 
 for c in contours:
-    # compute the center of the contour, then detect the name of the
-    # shape using only the contour
-    #cv2.drawContours(img, [c], -1, (0, 0, 255), 1)
-
     bbox = cv2.boundingRect(c)
     x, y, w, h = bbox
-
-    #if float(w/h) <= 1.5:
-     #   cv2.drawContours(img, [c], -1, (255, 0, 0), 1)
-
     shape = detect(c)
     if x > width * threshold_width and y < height * threshold_height and float(w / h) <= 1 and float(w / h) >= 0.25 and w  < width/15 and h < height/15 and not_inside(bbox, coords) :
         coords.append(c)
-        cv2.drawContours(img, [c], -1, (0, 255,0), 1)
+        #cv2.drawContours(img, [c], -1, (0, 255,0), 1)
 
 
 canvas = np.zeros_like(gray)

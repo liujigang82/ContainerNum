@@ -17,5 +17,4 @@ def get_code(containerno):
         sum += value * (2**i)
     return 0 if sum%11 == 10 else sum%11
 
-print(get_code("zcsu705623"))
 
