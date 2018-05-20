@@ -21,7 +21,7 @@ def detect(c):
     peri = cv2.arcLength(c, True)
     approx = cv2.approxPolyDP(c, 0.04 * peri, True)
 
-    if cv2.isContourConvex(approx) and abs(cv2.contourArea(c))<80:
+    if cv2.isContourConvex(approx) and abs(cv2.contourArea(c))<200:
         return shape
     # if the shape is a triangle, it will have 3 vertices
     if len(approx) == 3:
@@ -38,7 +38,7 @@ def detect(c):
         # a square will have an aspect ratio that is approximately
         # equal to one, otherwise, the shape is a rectangle
         #shape = "square" if ar >= 0.95 and ar <= 1.05 else "rectangle"
-        shape = "square" if ar >= 0.50 and ar <= 0.8 else "rectangle"
+        shape = "square" if ar >= 0.50 and ar <= 0.9 else "rectangle"
 
     # if the shape is a pentagon, it will have 5 vertices
     elif len(approx) == 5:
@@ -52,7 +52,7 @@ def detect(c):
     return shape
 
 #82,
-imageName = "../img/0074.jpg"
+imageName = "../img/0012.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 
@@ -107,10 +107,23 @@ for cnt in coords:
 cv2.imshow("canvas", canvas)
 backtorgb = cv2.cvtColor(gray,cv2.COLOR_GRAY2RGB)
 im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
-for c in contours:
-    shape = detect(c)
-    if  shape == "square" or shape == "rectangle":
-       cv2.drawContours(backtorgb, [c], -1, (0, 0, 255), 2)
 
+for c in contours:
+    c = cv2.convexHull(c)
+    shape = detect(c)
+    cv2.drawContours(backtorgb, [c], -1, (0, 255, 255), 2)
+    if shape == "square" :#or shape == "rectangle":
+        cv2.drawContours(backtorgb, [c], -1, (0, 0, 255), 2)
+    if shape == "rectangle":
+        cv2.drawContours(backtorgb, [c], -1, (0, 255, 0), 2)
+    if shape == "triangle":
+        cv2.drawContours(backtorgb, [c], -1, (255, 0, 0), 2)
+    if shape == "pentagon":
+        cv2.drawContours(backtorgb, [c], -1, (255, 255, 0), 2)
+    if shape == "circle":
+        cv2.drawContours(backtorgb, [c], -1, (255, 0, 255), 2)
+    if shape == "unidentified":
+        print("unidentified")
+        cv2.drawContours(backtorgb, [c], -1, (255, 255, 0), 2)
 cv2.imshow("Image", backtorgb)
 cv2.waitKeyEx(0)
