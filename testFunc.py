@@ -4,8 +4,8 @@ import numpy as np
 import pytesseract
 from preprocessing.preprocessing import get_perspective_transformed_im
 import glob
-#sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
-sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
+sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
+#sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
 import textRec, drawRect, get_contours, calculateAngle
 
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
@@ -198,14 +198,17 @@ def preprocessing_im(img):
     newX,newY = img.shape[1]*imgScale, img.shape[0]*imgScale
     img = cv2.resize(img, (int(newX),int(newY)))
     # histogram equalization
-    img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
-    img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
+    #img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
+    #img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
     #img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
-    img = cv2.fastNlMeansDenoisingColored(img, None, 7, 7, 7, 21)
+    #img = cv2.fastNlMeansDenoisingColored(img, None, 7, 7, 7, 21)
     # color to gray
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # perspective transform
     gray = get_perspective_transformed_im(gray)
+
+    smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
+    gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
     #cv2.imshow("perspective", gray)
     cv2.imshow("after deskew", gray)
     textRec.text_detection_MSER(gray)
@@ -272,7 +275,7 @@ for file in glob.glob("img/*.jpg"):
     print(file, ":", postprocessing(gray))
     cv2.waitKey(0)
 '''
-img = cv2.imread("img/0007.jpg")
+img = cv2.imread("img/0074.jpg")
 cv2.imshow("image", img)
 gray = preprocessing_im(img)
 postprocessing(gray)
