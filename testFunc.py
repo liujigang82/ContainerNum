@@ -4,13 +4,15 @@ import numpy as np
 import pytesseract
 from preprocessing.preprocessing import get_perspective_transformed_im
 import glob
-sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
-#sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
+#sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
+sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
 import textRec, drawRect, get_contours, calculateAngle
+from utils import get_contour_list
 
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'
 mser = cv2.MSER_create()
+mser.setMinArea(50)
 mser.setMaxArea(750)
 
 # global para
@@ -186,7 +188,6 @@ def get_image_patch(canvas, tesseract_data, result):
             bottom = max(top1 + height1, top2 + height2)
 
             top_tmp = top - t_boundary if top - t_boundary > 0 else 0
-
             canvas = canvas[top_tmp:bottom + t_boundary, left - t_boundary:right + t_boundary]
 
     return canvas
@@ -275,9 +276,10 @@ for file in glob.glob("img/*.jpg"):
     print(file, ":", postprocessing(gray))
     cv2.waitKey(0)
 '''
-img = cv2.imread("img/0074.jpg")
+img = cv2.imread("img2/CMAU.jpg")
 cv2.imshow("image", img)
 gray = preprocessing_im(img)
+get_contour_list(gray)
 postprocessing(gray)
 cv2.waitKey(0)
 

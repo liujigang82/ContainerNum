@@ -37,7 +37,6 @@ def detect(c):
 
         # a square will have an aspect ratio that is approximately
         # equal to one, otherwise, the shape is a rectangle
-        #shape = "square" if ar >= 0.95 and ar <= 1.05 else "rectangle"
         shape = "square" if ar >= 0.50 and ar <= 0.9 else "rectangle"
 
     # if the shape is a pentagon, it will have 5 vertices
@@ -52,7 +51,7 @@ def detect(c):
     return shape
 
 #82,
-imageName = "../img/0012.jpg"
+imageName = "../img2/CMAU.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 
@@ -67,7 +66,6 @@ img_yuv[:, :, 0] = cv2.equalizeHist(img_yuv[:, :, 0])
 img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
 '''
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
 gray = get_perspective_transformed_im(gray)
 
 smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
@@ -92,7 +90,7 @@ for c in contours:
     bbox = cv2.boundingRect(c)
     x, y, w, h = bbox
     shape = detect(c)
-    if x > width * threshold_width and y < height * threshold_height and float(w / h) <= 1 and float(w / h) >= 0.25 and w  < width/15 and h < height/15 and not_inside(bbox, coords) :
+    if x > width * threshold_width and y < height * threshold_height and float(w / h) <= 1 and w  < width/15 and h < height/15 and not_inside(bbox, coords) :
         coords.append(c)
         #cv2.drawContours(img, [c], -1, (0, 255,0), 1)
 
@@ -108,7 +106,11 @@ cv2.imshow("canvas", canvas)
 backtorgb = cv2.cvtColor(gray,cv2.COLOR_GRAY2RGB)
 im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 
+i = 0
 for c in contours:
+    i = i+ 1
+    x, y, w, h = cv2.boundingRect(c)
+    roi = gray[y:y + h, x:x + w]
     c = cv2.convexHull(c)
     shape = detect(c)
     cv2.drawContours(backtorgb, [c], -1, (0, 255, 255), 2)
@@ -125,5 +127,7 @@ for c in contours:
     if shape == "unidentified":
         print("unidentified")
         cv2.drawContours(backtorgb, [c], -1, (255, 255, 0), 2)
+    if shape != "unidentified":
+        cv2.imwrite('patch_%04d.png' % (i), roi)
 cv2.imshow("Image", backtorgb)
 cv2.waitKeyEx(0)

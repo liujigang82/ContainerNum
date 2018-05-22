@@ -1,0 +1,10 @@
+{
+  "threshold_width": {
+    "type": "float",
+    "value":" 0.25"
+  },
+  "threshold_height": {
+    "type": "float",
+    "value":"0.33333333"
+  }
+}

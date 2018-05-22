@@ -40,13 +40,15 @@ def is_text(str):
 def myfind(y, x):
     return [ a for a in range(len(y)) if y[a] == x]
 
-img = cv2.imread('../img/tmp.jpg')
+img = cv2.imread('../img/patch_0009.png')
+cv2.imshow("image", img)
 #gray = preprocessing(img)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+ret, gray = cv2.threshold(gray,200,255,cv2.THRESH_BINARY)
 cv2.imshow("gray", gray)
-kernel = np.ones((2,2),np.uint8)
-gray = cv2.erode(gray,kernel,iterations = 1)
-cv2.imshow("erosion", gray)
+#kernel = np.ones((2,2),np.uint8)
+#gray = cv2.erode(gray,kernel,iterations = 1)
+#cv2.imshow("erosion", gray)
 
 print("~~~~start~~~~~~~~~~~~`")
 
