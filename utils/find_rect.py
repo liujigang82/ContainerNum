@@ -76,7 +76,7 @@ gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
 
 
 mser = cv2.MSER_create()
-#mser.setMinArea(50)
+mser.setMinArea(50)
 mser.setMaxArea(750)
 contours, bboxes = mser.detectRegions(gray)
 
@@ -107,6 +107,7 @@ backtorgb = cv2.cvtColor(gray,cv2.COLOR_GRAY2RGB)
 im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 
 i = 0
+
 for c in contours:
     i = i+ 1
     x, y, w, h = cv2.boundingRect(c)
@@ -114,6 +115,8 @@ for c in contours:
     c = cv2.convexHull(c)
     shape = detect(c)
     cv2.drawContours(backtorgb, [c], -1, (0, 255, 255), 2)
+
+
     if shape == "square" :#or shape == "rectangle":
         cv2.drawContours(backtorgb, [c], -1, (0, 0, 255), 2)
     if shape == "rectangle":
@@ -127,7 +130,8 @@ for c in contours:
     if shape == "unidentified":
         print("unidentified")
         cv2.drawContours(backtorgb, [c], -1, (255, 255, 0), 2)
-    if shape != "unidentified":
-        cv2.imwrite('patch_%04d.png' % (i), roi)
+    #if shape != "unidentified":
+        #cv2.imwrite('patch_%04d.png' % (i), roi)
+
 cv2.imshow("Image", backtorgb)
 cv2.waitKeyEx(0)

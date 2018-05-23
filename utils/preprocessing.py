@@ -33,18 +33,21 @@ def intersection(box1,box2):
   return (x, y, w, h)
 
 
-def not_inside(bbox, coords):
+def not_inside(bbox, coords, method = 1):
     if len(coords) == 0:
         return True
     else:
         for coord in coords:
             box = cv2.boundingRect(coord)
             # compare box and bbox
-            #intersects = intersection(box, bbox)
-            #if intersects != (0, 0, 0, 0):
-            if box[0]<= bbox[0] and box[1] <= bbox[1] \
-                and box[0]+box[2]>=bbox[0]+bbox[2] and box[1]+box[3] >= bbox[1]+bbox[3]:
-                return False
+            if method == 1:
+                intersects = intersection(box, bbox)
+                if intersects != (0, 0, 0, 0):
+                    return False
+            else:
+                if box[0]<= bbox[0] and box[1] <= bbox[1] \
+                    and box[0]+box[2]>=bbox[0]+bbox[2] and box[1]+box[3] >= bbox[1]+bbox[3]:
+                    return False
         return True
 
 

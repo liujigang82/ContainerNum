@@ -37,7 +37,7 @@ def is_text(str):
     else:
         return False
 
-def myfind(y, x):
+def find_character_index(y, x):
     return [ a for a in range(len(y)) if y[a] == x]
 
 img = cv2.imread('../img/patch_0009.png')
@@ -62,11 +62,11 @@ tesseract_data = pytesseract.image_to_data(gray, output_type="dict")
 for i in range(len(tesseract_data["text"])):
     itemList = tesseract_data["text"]
     if itemList[i] in result and len(itemList[i]) >= 2 and is_text(itemList[i]):
-        level_index = myfind(tesseract_data["level"], tesseract_data["level"][i])
-        page_index = myfind(tesseract_data["level"], tesseract_data["level"][i])
-        block_index = myfind(tesseract_data["block_num"],tesseract_data["block_num"][i])
-        par_index = myfind(tesseract_data["par_num"],tesseract_data["par_num"][i])
-        line_index = myfind(tesseract_data["line_num"], tesseract_data["line_num"][i])
+        level_index = find_character_index(tesseract_data["level"], tesseract_data["level"][i])
+        page_index = find_character_index(tesseract_data["level"], tesseract_data["level"][i])
+        block_index = find_character_index(tesseract_data["block_num"],tesseract_data["block_num"][i])
+        par_index = find_character_index(tesseract_data["par_num"],tesseract_data["par_num"][i])
+        line_index = find_character_index(tesseract_data["line_num"], tesseract_data["line_num"][i])
 
         index = [i for i in level_index if i in page_index and i in block_index and i in par_index and i in line_index]
         print("index", index)
