@@ -1,10 +1,13 @@
 import cv2
 import numpy as np
+from matplotlib import pyplot as plt
 from preprocessing import auto_canny, not_inside, contour_rec_ara, get_perspective_transformed_im
-
+from sklearn import linear_model
 # global para
 threshold_width = 1/4
 threshold_height = 1/3
+
+
 
 def resize_im(image):
     height, width, depth = image.shape
@@ -21,7 +24,9 @@ def detect(c):
     peri = cv2.arcLength(c, True)
     approx = cv2.approxPolyDP(c, 0.04 * peri, True)
 
-    if cv2.isContourConvex(approx) and abs(cv2.contourArea(c))<200:
+    #if cv2.isContourConvex(approx) and abs(cv2.contourArea(c))<200:
+        #return shape
+    if not cv2.isContourConvex(approx) or abs(cv2.contourArea(c)) < 50:
         return shape
     # if the shape is a triangle, it will have 3 vertices
     if len(approx) == 3:
@@ -76,7 +81,7 @@ gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
 
 
 mser = cv2.MSER_create()
-mser.setMinArea(50)
+#mser.setMinArea(50)
 mser.setMaxArea(750)
 contours, bboxes = mser.detectRegions(gray)
 
@@ -92,7 +97,6 @@ for c in contours:
     shape = detect(c)
     if x > width * threshold_width and y < height * threshold_height and float(w / h) <= 1 and w  < width/15 and h < height/15 and not_inside(bbox, coords) :
         coords.append(c)
-        #cv2.drawContours(img, [c], -1, (0, 255,0), 1)
 
 
 canvas = np.zeros_like(gray)
@@ -108,30 +112,53 @@ im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL,cv2
 
 i = 0
 
-for c in contours:
+contour_info_list = []
+center_points = []
+for cnt in contours:
     i = i+ 1
-    x, y, w, h = cv2.boundingRect(c)
+    x, y, w, h = cv2.boundingRect(cnt)
     roi = gray[y:y + h, x:x + w]
-    c = cv2.convexHull(c)
-    shape = detect(c)
-    cv2.drawContours(backtorgb, [c], -1, (0, 255, 255), 2)
+    cnt = cv2.convexHull(cnt)
+    shape = detect(cnt)
 
+    if shape != "unidentified" :
+        center_points.append([int(x+w/2), int(y+h/2)])
+        contour_dict = {}
+        contour_dict["rect"] = [x, y, w, h]
+        contour_dict["shape"] = shape
+        contour_dict["center"] = [int(x+w/2), int(y+h/2)]
+        contour_info_list.append(contour_dict)
 
+    #cv2.drawContours(backtorgb, [cnt], -1, (0, 255, 255), 2)
     if shape == "square" :#or shape == "rectangle":
-        cv2.drawContours(backtorgb, [c], -1, (0, 0, 255), 2)
+        cv2.drawContours(backtorgb, [cnt], -1, (0, 0, 255), 2)
     if shape == "rectangle":
-        cv2.drawContours(backtorgb, [c], -1, (0, 255, 0), 2)
+        cv2.drawContours(backtorgb, [cnt], -1, (0, 255, 0), 2)
     if shape == "triangle":
-        cv2.drawContours(backtorgb, [c], -1, (255, 0, 0), 2)
+        cv2.drawContours(backtorgb, [cnt], -1, (255, 0, 0), 2)
     if shape == "pentagon":
-        cv2.drawContours(backtorgb, [c], -1, (255, 255, 0), 2)
+        cv2.drawContours(backtorgb, [cnt], -1, (255, 255, 0), 2)
     if shape == "circle":
-        cv2.drawContours(backtorgb, [c], -1, (255, 0, 255), 2)
-    if shape == "unidentified":
-        print("unidentified")
-        cv2.drawContours(backtorgb, [c], -1, (255, 255, 0), 2)
-    #if shape != "unidentified":
-        #cv2.imwrite('patch_%04d.png' % (i), roi)
+        cv2.drawContours(backtorgb, [cnt], -1, (255, 0, 255), 2)
 
+
+### Use RANSAC to find the line of center points
+ransac = linear_model.RANSACRegressor()
+if len(center_points) > 0:
+    X = np.array(center_points)[:, 0]
+    Y = np.array(center_points)[:, 1]
+    ransac.fit(X.reshape(-1, 1), Y.reshape(-1,1))
+    inlier_mask = ransac.inlier_mask_
+    outlier_mask = np.logical_not(inlier_mask)
+    line_X = np.arange(X.min(), X.max())[:, np.newaxis]
+    line_y_ransac = ransac.predict(line_X)
+    print("~~~~~~~~~~~~~~~~~",line_y_ransac)
+    plt.plot(line_X, line_y_ransac, color='cornflowerblue', linewidth=2,
+             label='RANSAC regressor')
+    plt.xlabel("Input")
+    plt.ylabel("Response")
+    plt.show()
+print(contour_info_list)
+print(len(contour_info_list))
 cv2.imshow("Image", backtorgb)
 cv2.waitKeyEx(0)

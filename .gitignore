@@ -1,11 +1,12 @@
 # Add any directories, files, or patterns you don't want to be tracked by version control
-.idea
+/.idea/*
 .idea\workspace.xml
 *.pyc
-.venv
-dist
-build
-env
-Tesseract-OCR
-test
-__pycache__
+/.venv/*
+/activate/*
+/dist/*
+/build/*
+/env/*
+/Tesseract-OCR/*
+/test/*
+/__pycache__/*
