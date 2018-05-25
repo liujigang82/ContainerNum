@@ -8,7 +8,6 @@ threshold_width = 1/4
 threshold_height = 1/3
 
 
-
 def resize_im(image):
     height, width, depth = image.shape
     imgScale = 600 / width
@@ -56,7 +55,7 @@ def detect(c):
     return shape
 
 #82,
-imageName = "../img2/CMAU.jpg"
+imageName = "../img2/CLHU.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 
@@ -125,13 +124,14 @@ for cnt in contours:
         center_points.append([int(x+w/2), int(y+h/2)])
         contour_dict = {}
         contour_dict["rect"] = [x, y, w, h]
+        #contour_dict["contour"] = cnt
         contour_dict["shape"] = shape
         contour_dict["center"] = [int(x+w/2), int(y+h/2)]
         contour_info_list.append(contour_dict)
 
     #cv2.drawContours(backtorgb, [cnt], -1, (0, 255, 255), 2)
     if shape == "square" :#or shape == "rectangle":
-        cv2.drawContours(backtorgb, [cnt], -1, (0, 0, 255), 2)
+        cv2.drawContours(backtorgb, [cnt], -1, (0, 0, 255), 1)
     if shape == "rectangle":
         cv2.drawContours(backtorgb, [cnt], -1, (0, 255, 0), 2)
     if shape == "triangle":
@@ -143,22 +143,51 @@ for cnt in contours:
 
 
 ### Use RANSAC to find the line of center points
-ransac = linear_model.RANSACRegressor()
+ransac = linear_model.RANSACRegressor(residual_threshold = 8)
 if len(center_points) > 0:
     X = np.array(center_points)[:, 0]
     Y = np.array(center_points)[:, 1]
-    ransac.fit(X.reshape(-1, 1), Y.reshape(-1,1))
+    ransac.fit(X.reshape(-1, 1), Y)
     inlier_mask = ransac.inlier_mask_
-    outlier_mask = np.logical_not(inlier_mask)
+    num_centers = np.array(center_points)[inlier_mask]
+
+    ### find the container no. position.
+    num_centers = np.sort(num_centers, axis = 0)
+
+
+
     line_X = np.arange(X.min(), X.max())[:, np.newaxis]
     line_y_ransac = ransac.predict(line_X)
-    print("~~~~~~~~~~~~~~~~~",line_y_ransac)
+    print("inlier coord:",  num_centers)
+    plt.imshow(backtorgb)
     plt.plot(line_X, line_y_ransac, color='cornflowerblue', linewidth=2,
              label='RANSAC regressor')
     plt.xlabel("Input")
     plt.ylabel("Response")
-    plt.show()
-print(contour_info_list)
-print(len(contour_info_list))
+
+### find the container no. position.Remove the forground not in num_centers.
+index = num_centers.shape[0] -1
+print(index, num_centers[index])
+#print(contour_info_list)
+for item in contour_info_list:
+    if item["center"] not in num_centers:
+        rect = item["rect"]
+        canvas[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]] = 0
+    else:
+        print(item["center"], item["shape"])
+        if np.array_equal(item["center"], num_centers[index])and item["shape"] == "square":
+            print("herre++++++++++++++")
+            #for pt in item["contour"]:
+             #   print("point:",pt)
+             #   canvas[pt[1], pt[0]] = 0
+
+
+cv2.imshow("remove redundant", canvas)
+
+
+
+
 cv2.imshow("Image", backtorgb)
-cv2.waitKeyEx(0)
+plt.show()
+#cv2.waitKeyEx(0)
+
