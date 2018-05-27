@@ -1,7 +1,15 @@
 import cv2
 import numpy as np
 from textProcessing import  isAlpha, containDigAlph, find_character_index
+
 from utils import get_json_data
+from sklearn import linear_model
+
+def is_point_in(point, pointList):
+    for item in pointList:
+        if point[0] == item[0] and point[1] == item[1]:
+            return True
+    return False
 
 def get_image_patch(canvas, tesseract_data, result):
     t_boundary = 10
@@ -114,7 +122,7 @@ def detect(c):
     peri = cv2.arcLength(c, True)
     approx = cv2.approxPolyDP(c, 0.04 * peri, True)
 
-    if cv2.isContourConvex(approx) and abs(cv2.contourArea(c))<200:
+    if not cv2.isContourConvex(approx) or abs(cv2.contourArea(c)) < 50:
         return shape
     # if the shape is a triangle, it will have 3 vertices
     if len(approx) == 3:
@@ -144,6 +152,11 @@ def detect(c):
     return shape
 
 
+def remove_rect(canvas, contour):
+    backtorgb = cv2.cvtColor(canvas,cv2.COLOR_GRAY2RGB)
+    cv2.drawContours(backtorgb, [contour], -1, (0, 0, 0), 3)
+    return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
+
 def get_binary_text_ROI(gray):
     parameters = get_json_data()
     threshold_width = float(parameters["threshold_width"]["value"])
@@ -169,6 +182,43 @@ def get_binary_text_ROI(gray):
         yy = cnt[:, 1]
         color = 255
         canvas[yy, xx] = color
+    cv2.imshow("canvas1",canvas)
+
+    im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+    contour_info_list = []
+    center_points = []
+    for cnt in contours:
+        x, y, w, h = cv2.boundingRect(cnt)
+        cnt = cv2.convexHull(cnt)
+        shape = detect(cnt)
+        if shape != "unidentified" :
+            center_points.append([int(x+w/2), int(y+h/2)])
+            contour_dict = {}
+            contour_dict["rect"] = [x, y, w, h]
+            contour_dict["contour"] = cnt
+            contour_dict["shape"] = shape
+            contour_dict["center"] = [int(x+w/2), int(y+h/2)]
+            contour_info_list.append(contour_dict)
+    ### Use RANSAC to find the line of center points
+    ransac = linear_model.RANSACRegressor(residual_threshold = 5)
+    if len(center_points) > 0:
+        X = np.array(center_points)[:, 0]
+        Y = np.array(center_points)[:, 1]
+        ransac.fit(X.reshape(-1, 1), Y)
+        inlier_mask = ransac.inlier_mask_
+        num_centers = np.array(center_points)[inlier_mask]
+        ### find the container no. position.
+        num_centers = num_centers[num_centers[:,0].argsort()]
+
+     ### find the container no. position.Remove the forground not in num_centers.
+    index = num_centers.shape[0] -1
+    for item in contour_info_list:
+        if not is_point_in(item["center"] , num_centers):
+            rect = item["rect"]
+            canvas[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]] = 0
+        else:
+            if np.array_equal(item["center"], num_centers[index])and item["shape"] == "square":
+                canvas = remove_rect(canvas, item["contour"])
     return canvas
 
 

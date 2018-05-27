@@ -6,5 +6,10 @@
   "threshold_height": {
     "type": "float",
     "value":"0.33333333"
+  },
+  "line_thickness_rect_removal": {
+    "type": "int",
+    "value":"2"
   }
+
 }

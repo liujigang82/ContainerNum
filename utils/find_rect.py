@@ -7,6 +7,11 @@ from sklearn import linear_model
 threshold_width = 1/4
 threshold_height = 1/3
 
+def is_point_in(point, pointList):
+    for item in pointList:
+        if point[0] == item[0] and point[1] == item[1]:
+            return True
+    return False
 
 def resize_im(image):
     height, width, depth = image.shape
@@ -54,8 +59,14 @@ def detect(c):
     # return the name of the shape
     return shape
 
+
+def remove_rect(canvas, contour):
+    backtorgb = cv2.cvtColor(canvas,cv2.COLOR_GRAY2RGB)
+    cv2.drawContours(backtorgb, [contour], -1, (0, 0, 0), 3)
+    return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
+
 #82,
-imageName = "../img2/CLHU.jpg"
+imageName = "../img2/CCLU.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 
@@ -114,21 +125,20 @@ i = 0
 contour_info_list = []
 center_points = []
 for cnt in contours:
-    i = i+ 1
-    x, y, w, h = cv2.boundingRect(cnt)
-    roi = gray[y:y + h, x:x + w]
     cnt = cv2.convexHull(cnt)
     shape = detect(cnt)
-
+    x, y, w, h = cv2.boundingRect(cnt)
     if shape != "unidentified" :
         center_points.append([int(x+w/2), int(y+h/2)])
         contour_dict = {}
         contour_dict["rect"] = [x, y, w, h]
-        #contour_dict["contour"] = cnt
+        contour_dict["contour"] = cnt
         contour_dict["shape"] = shape
         contour_dict["center"] = [int(x+w/2), int(y+h/2)]
         contour_info_list.append(contour_dict)
 
+    cv2.rectangle(backtorgb, (x, y), (x+w, y+h), (255,0,0), 2)
+    '''
     #cv2.drawContours(backtorgb, [cnt], -1, (0, 255, 255), 2)
     if shape == "square" :#or shape == "rectangle":
         cv2.drawContours(backtorgb, [cnt], -1, (0, 0, 255), 1)
@@ -140,10 +150,11 @@ for cnt in contours:
         cv2.drawContours(backtorgb, [cnt], -1, (255, 255, 0), 2)
     if shape == "circle":
         cv2.drawContours(backtorgb, [cnt], -1, (255, 0, 255), 2)
-
-
+    '''
+cv2.imshow("rect",backtorgb)
 ### Use RANSAC to find the line of center points
-ransac = linear_model.RANSACRegressor(residual_threshold = 8)
+ransac = linear_model.RANSACRegressor(residual_threshold = 2)
+
 if len(center_points) > 0:
     X = np.array(center_points)[:, 0]
     Y = np.array(center_points)[:, 1]
@@ -152,13 +163,10 @@ if len(center_points) > 0:
     num_centers = np.array(center_points)[inlier_mask]
 
     ### find the container no. position.
-    num_centers = np.sort(num_centers, axis = 0)
-
-
-
+    num_centers = num_centers[num_centers[:,0].argsort()]
+    print("center:", num_centers)
     line_X = np.arange(X.min(), X.max())[:, np.newaxis]
     line_y_ransac = ransac.predict(line_X)
-    print("inlier coord:",  num_centers)
     plt.imshow(backtorgb)
     plt.plot(line_X, line_y_ransac, color='cornflowerblue', linewidth=2,
              label='RANSAC regressor')
@@ -167,23 +175,17 @@ if len(center_points) > 0:
 
 ### find the container no. position.Remove the forground not in num_centers.
 index = num_centers.shape[0] -1
-print(index, num_centers[index])
-#print(contour_info_list)
+print(len(contour_info_list))
 for item in contour_info_list:
-    if item["center"] not in num_centers:
+    if not is_point_in(item["center"], num_centers): #not in num_centers:
         rect = item["rect"]
+        print("not center:", np.array([item["center"]]).shape, num_centers.shape, np.array(item["center"]))
         canvas[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]] = 0
     else:
-        print(item["center"], item["shape"])
         if np.array_equal(item["center"], num_centers[index])and item["shape"] == "square":
-            print("herre++++++++++++++")
-            #for pt in item["contour"]:
-             #   print("point:",pt)
-             #   canvas[pt[1], pt[0]] = 0
-
+            canvas = remove_rect(canvas, item["contour"])
 
 cv2.imshow("remove redundant", canvas)
-
 
 
 

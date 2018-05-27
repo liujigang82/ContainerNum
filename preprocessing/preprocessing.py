@@ -3,8 +3,10 @@ import cv2
 
 angle_threshold_line_detection = 20
 
+
 def dist(point1, point2):
     return np.sqrt((point1[0]-point2[0])*(point1[0]-point2[0])+(point1[1]-point2[1])*(point1[1]-point2[1]))
+
 
 def compute_intersection(line_first, line_sec):
     x = (np.sin(line_first[1])*line_sec[0]-np.sin(line_sec[1])*line_first[0])/(np.sin(line_first[1])*np.cos(line_sec[1])-np.sin(line_sec[1])*np.cos(line_first[1]))
@@ -25,7 +27,6 @@ def auto_canny(image, sigma=0.33):
     lower = int(max(0, (1.0 - sigma) * v))
     upper = int(min(255, (1.0 + sigma) * v))
     edged = cv2.Canny(image, lower, upper)
-    cv2.imshow("edge",edged)
     # return the edged image
     return edged
 
@@ -81,6 +82,7 @@ def compute_perspective_matrix(vertical_params, horizontal_params, h, w):
     pers_matrix = cv2.getPerspectiveTransform(pts1, pts2)
     return pers_matrix
 
+
 def get_perspective_transformed_im(gray):
     vertical_params, horizontal_params = get_horizontal_vertical_lines(gray)
     if len(vertical_params) > 1 and len(horizontal_params) > 1:
@@ -91,6 +93,7 @@ def get_perspective_transformed_im(gray):
         gray = cv2.warpPerspective(gray, M , (w, h))
     return gray
 
+
 def resize_im(image):
     height, width, depth = image.shape
     imgScale = 600/width
@@ -98,38 +101,3 @@ def resize_im(image):
     image = cv2.resize(image, (int(newX),int(newY)))
     return image
 
-def detect_shape(c):
-    # initialize the shape name and approximate the contour
-    shape = "unidentified"
-
-
-    peri = cv2.arcLength(c, True)
-    approx = cv2.approxPolyDP(c, 0.04 * peri, True)
-
-    # if the shape is a triangle, it will have 3 vertices
-    if len(approx) == 3:
-        shape = "triangle"
-
-    # if the shape has 4 vertices, it is either a square or
-    # a rectangle
-    elif len(approx) == 4:
-        # compute the bounding box of the contour and use the
-        # bounding box to compute the aspect ratio
-        (x, y, w, h) = cv2.boundingRect(approx)
-        ar = w / float(h)
-
-        # a square will have an aspect ratio that is approximately
-        # equal to one, otherwise, the shape is a rectangle
-        shape = "square" if ar >= 0.50 and ar <= 0.8 else "rectangle"
-
-
-    # if the shape is a pentagon, it will have 5 vertices
-    elif len(approx) == 5:
-        shape = "pentagon"
-
-    # otherwise, we assume the shape is a circle
-    else:
-        shape = "circle"
-
-    # return the name of the shape
-    return shape
