@@ -18,7 +18,6 @@ def get_image_patch(canvas, tesseract_data, result):
         text = [character for character in itemList[i] if character.isalpha()]
         text = "".join(item for item in text)
         if text in result and len(text) >= 2 and isAlpha(text):
-            print(text)
             level_index = find_character_index(tesseract_data["level"], tesseract_data["level"][i])
             page_index = find_character_index(tesseract_data["level"], tesseract_data["level"][i])
             block_index = find_character_index(tesseract_data["block_num"], tesseract_data["block_num"][i])
@@ -28,17 +27,15 @@ def get_image_patch(canvas, tesseract_data, result):
 
             index = [i for i in level_index if
                      i in page_index and i in block_index and i in par_index and i in line_index]
-            print(index)
             to_remove = []
             for i in range(len(index)):
-                if not containDigAlph(tesseract_data["text"][index[i]]):
+                if not containDigAlph(tesseract_data["text"][index[i]]) or tesseract_data["word_num"][index[i]] < word_index:
                     to_remove.append(index[i])
                     break
             for i in range(len(to_remove)):
                 index.remove(to_remove[i])
 
             #index = index[word_index-1:len(index)]
-            print("after:", index)
             left1 = tesseract_data["left"][index[0]]
             left2 = tesseract_data["left"][index[len(index) - 1]]
             top1 = tesseract_data["top"][index[0]]
@@ -110,10 +107,12 @@ def calculateAngle(binary):
                              flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
     return rotated
 
+
 def contour_rec_ara(contour):
     bbox = cv2.boundingRect(contour)
     x, y, w, h = bbox
     return w*h
+
 
 def detect(c):
     # initialize the shape name and approximate the contour
@@ -157,6 +156,33 @@ def remove_rect(canvas, contour):
     cv2.drawContours(backtorgb, [contour], -1, (0, 0, 0), 3)
     return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
 
+
+def find_region_RANSAC(center_points, num_centers, y_position):
+    ransac = linear_model.RANSACRegressor(residual_threshold = 5)
+    if len(center_points) > 0:
+        X = np.array(center_points)[:, 0]
+        Y = np.array(center_points)[:, 1]
+        ransac.fit(X.reshape(-1, 1), Y)
+        inlier_mask = ransac.inlier_mask_
+        #print("inner", inlier_mask)
+        tmp_centers = np.array(center_points)[inlier_mask]
+        tmp_centers = tmp_centers[tmp_centers[:, 0].argsort()]
+
+        if tmp_centers.shape[0] < 7:
+            return num_centers
+
+        y_centers = np.average(tmp_centers[:, 1])
+        if y_centers < y_position:
+            y_position = y_centers
+            num_centers = tmp_centers
+
+        outlier_mask = np.logical_not(inlier_mask)
+        num_centers = find_region_RANSAC(np.array(center_points)[outlier_mask], num_centers, y_position)
+
+    return num_centers
+
+
+
 def get_binary_text_ROI(gray):
     parameters = get_json_data()
     threshold_width = float(parameters["threshold_width"]["value"])
@@ -199,18 +225,15 @@ def get_binary_text_ROI(gray):
             contour_dict["shape"] = shape
             contour_dict["center"] = [int(x+w/2), int(y+h/2)]
             contour_info_list.append(contour_dict)
+
     ### Use RANSAC to find the line of center points
-    ransac = linear_model.RANSACRegressor(residual_threshold = 5)
-    if len(center_points) > 0:
-        X = np.array(center_points)[:, 0]
-        Y = np.array(center_points)[:, 1]
-        ransac.fit(X.reshape(-1, 1), Y)
-        inlier_mask = ransac.inlier_mask_
-        num_centers = np.array(center_points)[inlier_mask]
-        ### find the container no. position.
-        num_centers = num_centers[num_centers[:,0].argsort()]
+
+    num_centers = find_region_RANSAC(center_points, "", 800)
 
      ### find the container no. position.Remove the forground not in num_centers.
+    if len(num_centers) == 0:
+        return canvas
+
     index = num_centers.shape[0] -1
     for item in contour_info_list:
         if not is_point_in(item["center"] , num_centers):

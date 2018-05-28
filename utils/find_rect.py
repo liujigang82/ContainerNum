@@ -66,7 +66,7 @@ def remove_rect(canvas, contour):
     return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
 
 #82,
-imageName = "../img2/CCLU.jpg"
+imageName = "../img/0007.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 
@@ -182,6 +182,7 @@ for item in contour_info_list:
         print("not center:", np.array([item["center"]]).shape, num_centers.shape, np.array(item["center"]))
         canvas[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]] = 0
     else:
+        cv2.drawContours(backtorgb, [item["contour"]], -1, (0, 0, 255), 1)
         if np.array_equal(item["center"], num_centers[index])and item["shape"] == "square":
             canvas = remove_rect(canvas, item["contour"])
 

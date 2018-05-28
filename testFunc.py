@@ -1,14 +1,13 @@
 import sys
 import cv2
-import numpy as np
 import pytesseract
 from preprocessing.preprocessing import get_perspective_transformed_im
 from postprocessing import get_binary_text_ROI
 import glob
-sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
-#sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
+#sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
+sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
 import textRec, drawRect, get_contours, calculateAngle
-from textProcessing import str_confidence, result_refine
+from textProcessing import str_confidence, result_refine, final_refine
 from postprocessing import get_image_patch,get_contour_list, not_inside, contour_rec_ara
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'
@@ -50,33 +49,10 @@ def preprocessing_im(img):
 
 
 def postprocessing(gray):
-    '''
-    coords = []
-    coordinates, bboxes = mser.detectRegions(gray)
-    coordinates = sorted(coordinates, key=contour_rec_ara, reverse=True)
-    (height, width) = gray.shape[:2]
-    for coord in coordinates:
-        bbox = cv2.boundingRect(coord)
-        x, y, w, h = bbox
-        if x > width * threshold_width and y < height * threshold_height  and not_inside(bbox, coords) and w  <width/15 and h < height/15:
-            coords.append(coord)
-
-    canvas3 = np.zeros_like(gray)
-    for cnt in coords:
-        xx = cnt[:, 0]
-        yy = cnt[:, 1]
-        color = 255
-        canvas3[yy, xx] = color
-
-    #kernel = np.ones((2, 2), np.uint8)
-    #canvas3 = cv2.erode(canvas3, kernel, iterations=1)
-    canvas3 = cv2.GaussianBlur(canvas3,(3,3),0)
-    cv2.imshow("canvas", canvas3)
-    '''
     canvas3 = get_binary_text_ROI(gray)
     #canvas3 = calculateAngle.calculateAngle(canvas3)
     image_str = pytesseract.image_to_string(canvas3)
-    print("result:",image_str)
+    print("result:", image_str)
 
     min_conf = 100
     result = ""
@@ -88,20 +64,24 @@ def postprocessing(gray):
     result = result_refine(result)
     print("results:", result)
 
-
     tesseract_data = pytesseract.image_to_data(canvas3, output_type="dict")
     print( pytesseract.image_to_data(canvas3))
     canvas3 = get_image_patch(canvas3, tesseract_data, result)
     canvas3 = calculateAngle.calculateAngle(canvas3)
     cv2.imshow("image patch", canvas3)
-    print("refined results:", pytesseract.image_to_string(canvas3))
+    result = pytesseract.image_to_string(canvas3)
+    result = result_refine(result)
+    result = final_refine(result)
+    print("refined results:", result)
 
     return result
 
-img = cv2.imread("img2/CMAU.jpg")
+
+
+img = cv2.imread("img/0002.jpg")
 cv2.imshow("image", img)
 gray = preprocessing_im(img)
-get_contour_list(gray)
+#get_contour_list(gray)
 postprocessing(gray)
 cv2.waitKey(0)
 
