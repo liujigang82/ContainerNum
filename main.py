@@ -18,7 +18,7 @@ class MainWindow(QWidget):
         self.height = 800
     def initUI(self):
 
-        self.setWindowIcon(QIcon('icon/container.png'))
+        self.setWindowIcon(QIcon('icon/container.ico'))
         self.textEdit = QTextEdit(self)
         self.label = QLabel()
         self.label.resize(600, 800)
