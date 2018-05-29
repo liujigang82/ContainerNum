@@ -62,7 +62,7 @@ class MainWindow(QWidget):
 
         self.setLayout(grid)
         self.setGeometry(300, 300, 800,600)
-        self.setWindowTitle('集装箱柜号识别 v1')
+        self.setWindowTitle('集装箱柜号识别 v1.1')
         self.show()
 
     def clearText(self):

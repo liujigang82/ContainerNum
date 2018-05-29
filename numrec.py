@@ -1,16 +1,10 @@
-import sys
 import cv2
 import numpy as np
 import pytesseract
 from preprocessing.preprocessing import get_perspective_transformed_im,resize_im
 from postprocessing import get_binary_text_ROI, get_image_patch, calculateAngle
 from textProcessing import result_refine, final_refine
-from textProcessing import find_index_word
-import glob
-#sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
-#import textRec, drawRect, kmeans, get_contours
 
-#pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'\
 
 def preprocessing_im(img):

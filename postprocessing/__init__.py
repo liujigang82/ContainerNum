@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
-from textProcessing import  isAlpha, containDigAlph, find_character_index
-
-from utils import get_json_data
 from sklearn import linear_model
+from textProcessing import  isAlpha, containDigAlph, find_character_index
+from utils import get_json_data
+
 
 def is_point_in(point, pointList):
     for item in pointList:
@@ -208,7 +208,7 @@ def get_binary_text_ROI(gray):
         yy = cnt[:, 1]
         color = 255
         canvas[yy, xx] = color
-    cv2.imshow("canvas1",canvas)
+    #cv2.imshow("canvas1",canvas)
 
     im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
     contour_info_list = []

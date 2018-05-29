@@ -3,11 +3,11 @@
 block_cipher = None
 
 
-a = Analysis(['main.py'],
+a = Analysis(['testFunc.py'],
              pathex=['F:\\Projects\\ConainerNum\\ContainerNum'],
              binaries=[],
              datas=[],
-             hiddenimports=['scipy._lib.messagestream', 'sklearn.neighbors.typedefs'],
+             hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
@@ -21,9 +21,9 @@ exe = EXE(pyz,
           a.binaries,
           a.zipfiles,
           a.datas,
-          name='main',
+          name='testFunc',
           debug=False,
           strip=False,
           upx=True,
           runtime_tmpdir=None,
-          console=True , icon='icon\\container.ico')
+          console=True )
