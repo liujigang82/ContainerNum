@@ -4,8 +4,8 @@ import pytesseract
 from preprocessing.preprocessing import get_perspective_transformed_im
 from postprocessing import get_binary_text_ROI
 import glob
-#sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
-sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
+sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
+#sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
 import textRec, drawRect, get_contours, calculateAngle
 from textProcessing import str_confidence, result_refine, final_refine
 from postprocessing import get_image_patch,get_contour_list, not_inside, contour_rec_ara
@@ -53,7 +53,7 @@ def postprocessing(gray):
     #canvas3 = calculateAngle.calculateAngle(canvas3)
     image_str = pytesseract.image_to_string(canvas3)
     print("result:", image_str)
-
+    cv2.imshow("canvas :", canvas3)
     min_conf = 100
     result = ""
     for line in image_str.splitlines():
@@ -63,14 +63,17 @@ def postprocessing(gray):
             min_conf = cur_conf
     result = result_refine(result)
     print("results:", result)
-
+    '''
     tesseract_data = pytesseract.image_to_data(canvas3, output_type="dict")
     print( pytesseract.image_to_data(canvas3))
     canvas3 = get_image_patch(canvas3, tesseract_data, result)
     canvas3 = calculateAngle.calculateAngle(canvas3)
     cv2.imshow("image patch", canvas3)
     result = pytesseract.image_to_string(canvas3)
+    print("1", result)
     result = result_refine(result)
+    print("2", result)
+    '''
     result = final_refine(result)
     print("refined results:", result)
 
@@ -78,7 +81,7 @@ def postprocessing(gray):
 
 
 
-img = cv2.imread("img/0002.jpg")
+img = cv2.imread("img/0025.jpg")
 cv2.imshow("image", img)
 gray = preprocessing_im(img)
 #get_contour_list(gray)

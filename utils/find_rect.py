@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-#from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt
 from preprocessing import auto_canny, not_inside, contour_rec_ara, get_perspective_transformed_im
 from sklearn import linear_model
 # global para
@@ -66,7 +66,7 @@ def remove_rect(canvas, contour):
     return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
 
 #82,
-imageName = "../img/0007.jpg"
+imageName = "../img/0025.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 
@@ -167,13 +167,13 @@ if len(center_points) > 0:
     print("center:", num_centers)
     line_X = np.arange(X.min(), X.max())[:, np.newaxis]
     line_y_ransac = ransac.predict(line_X)
-    '''
+
     plt.imshow(backtorgb)
     plt.plot(line_X, line_y_ransac, color='cornflowerblue', linewidth=2,
              label='RANSAC regressor')
     plt.xlabel("Input")
     plt.ylabel("Response")
-    '''
+
 ### find the container no. position.Remove the forground not in num_centers.
 index = num_centers.shape[0] -1
 print(len(contour_info_list))
@@ -192,6 +192,6 @@ cv2.imshow("remove redundant", canvas)
 
 
 cv2.imshow("Image", backtorgb)
-#plt.show()
+plt.show()
 #cv2.waitKeyEx(0)
 
