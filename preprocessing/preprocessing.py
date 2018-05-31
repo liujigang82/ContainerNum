@@ -95,8 +95,8 @@ def get_perspective_transformed_im(gray):
 
 
 def resize_im(image):
-    height, width, depth = image.shape
-    imgScale = 600/width
+    im_shape = image.shape
+    imgScale = 600/im_shape[1]
     newX,newY = image.shape[1]*imgScale, image.shape[0]*imgScale
     image = cv2.resize(image, (int(newX),int(newY)))
     return image

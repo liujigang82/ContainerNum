@@ -9,6 +9,7 @@ pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'\
 
 def preprocessing_im(img):
     # resize
+    print(img.shape)
     img = resize_im(img)
     # histogram equalization
     #img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
@@ -16,7 +17,10 @@ def preprocessing_im(img):
     #img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
     #img = cv2.fastNlMeansDenoisingColored(img, None, 7, 7, 7, 21)
     # color to gray
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    if len(img.shape) == 3:
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    else:
+        gray = img
     # perspective transform
     gray = get_perspective_transformed_im(gray)
     smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
@@ -61,6 +65,7 @@ def postprocessing(gray):
 
 def num_rec(file):
     img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
+    cv2.imshow("img",img)
     gray = preprocessing_im(img)
     print("preprocessing done...")
     return postprocessing(gray)
