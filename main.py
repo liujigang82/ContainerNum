@@ -1,14 +1,10 @@
 import sys
 import os
 import glob
-import cv2
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import  QWidget, QTextEdit, QAction, QApplication, QFileDialog, QGridLayout, QLabel,QMenuBar, QToolBar, QVBoxLayout
 from PyQt5.QtGui import QIcon, QPixmap
 from numrec import num_rec
-
-
-
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -72,8 +68,8 @@ class MainWindow(QWidget):
         self.textEdit.append("识别中...")
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
-                                                  "jpg Files (*.jpg)", options=options)
+        fileName, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "Open image",
+                                                  "Images (*.jpg *.png *.jpeg)", options=options)
 
         print(fileName)
         if fileName:

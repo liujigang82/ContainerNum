@@ -66,7 +66,7 @@ def remove_rect(canvas, contour):
     return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
 
 #82,
-imageName = "../img/0025.jpg"
+imageName = "../img/0022.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 

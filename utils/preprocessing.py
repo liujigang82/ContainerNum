@@ -1,12 +1,14 @@
 import cv2
 import numpy as np
 
+
 def resize_im(image):
     height, width, depth = image.shape
-    imgScale = 600/width
-    newX,newY = image.shape[1]*imgScale, image.shape[0]*imgScale
-    image = cv2.resize(image, (int(newX),int(newY)))
+    imgScale = 600 / width
+    newX, newY = image.shape[1] * imgScale, image.shape[0] * imgScale
+    image = cv2.resize(image, (int(newX), int(newY)))
     return image
+
 
 def auto_canny(image, sigma=0.33):
     # compute the median of the single channel pixel intensities
@@ -19,21 +21,26 @@ def auto_canny(image, sigma=0.33):
     # return the edged image
     return edged
 
+
 def contour_rec_ara(contour):
     bbox = cv2.boundingRect(contour)
     x, y, w, h = bbox
-    return w*h
-
-def intersection(box1,box2):
-  x = max(box1[0], box2[0])
-  y = max(box1[1], box2[1])
-  w = min(box1[0]+box1[2], box2[0]+box2[2]) - x
-  h = min(box1[1]+box1[3], box2[1]+box2[3]) - y
-  if w<0 or h<0: return (0,0,0,0)
-  return (x, y, w, h)
+    return w * h
 
 
-def not_inside(bbox, coords, method = 1):
+def intersection(box1, box2):
+    #intersection = box1 & box2
+    print("~~~~~~~~~~~~~~~~")
+    print(box1, box2)
+    x = max(box1[0], box2[0])
+    y = max(box1[1], box2[1])
+    w = min(box1[0] + box1[2], box2[0] + box2[2]) - x
+    h = min(box1[1] + box1[3], box2[1] + box2[3]) - y
+    if w < 0 or h < 0: return (0, 0, 0, 0)
+    return (x, y, w, h)
+
+
+def not_inside(bbox, coords, method=0):
     if len(coords) == 0:
         return True
     else:
@@ -45,20 +52,23 @@ def not_inside(bbox, coords, method = 1):
                 if intersects != (0, 0, 0, 0):
                     return False
             else:
-                if box[0]<= bbox[0] and box[1] <= bbox[1] \
-                    and box[0]+box[2]>=bbox[0]+bbox[2] and box[1]+box[3] >= bbox[1]+bbox[3]:
+                if box[0] <= bbox[0] and box[1] <= bbox[1] \
+                        and box[0] + box[2] >= bbox[0] + bbox[2] and box[1] + box[3] >= bbox[1] + bbox[3]:
                     return False
         return True
 
 
 def dist(point1, point2):
-    return np.sqrt((point1[0]-point2[0])*(point1[0]-point2[0])+(point1[1]-point2[1])*(point1[1]-point2[1]))
+    return np.sqrt(
+        (point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]))
+
 
 def compute_intersection(line_first, line_sec):
-    x = (np.sin(line_first[1])*line_sec[0]-np.sin(line_sec[1])*line_first[0])/(np.sin(line_first[1])*np.cos(line_sec[1])-np.sin(line_sec[1])*np.cos(line_first[1]))
-    if np.sin(line_sec[1]) !=0:
-        y = (line_sec[0]-x*np.cos(line_sec[1]))/np.sin(line_sec[1])
-    elif  np.sin(line_first[1]) !=0:
+    x = (np.sin(line_first[1]) * line_sec[0] - np.sin(line_sec[1]) * line_first[0]) / (
+    np.sin(line_first[1]) * np.cos(line_sec[1]) - np.sin(line_sec[1]) * np.cos(line_first[1]))
+    if np.sin(line_sec[1]) != 0:
+        y = (line_sec[0] - x * np.cos(line_sec[1])) / np.sin(line_sec[1])
+    elif np.sin(line_first[1]) != 0:
         y = (line_first[0] - x * np.cos(line_first[1])) / np.sin(line_first[1])
     else:
         return None
@@ -67,19 +77,19 @@ def compute_intersection(line_first, line_sec):
 
 def get_horizontal_vertical_lines(gray):
     angle_threshold_line_detection = 20
-    vertical_params=[]
+    vertical_params = []
     horizontal_params = []
     gray = auto_canny(gray)
-    #detect regions in gray scale image
+    # detect regions in gray scale image
     height, width = gray.shape
-    lines = cv2.HoughLines(gray, rho=1, theta =np.pi/180, threshold = 160)
+    lines = cv2.HoughLines(gray, rho=1, theta=np.pi / 180, threshold=160)
 
     if lines is not None:
         for line in lines:
             for rho, theta in line:
-                if theta*180/np.pi < angle_threshold_line_detection or theta*180/np.pi > 180 - angle_threshold_line_detection:
-                        vertical_params.append([rho, theta])
-                if theta*180/np.pi > 90-angle_threshold_line_detection and theta*180/np.pi < 90 + angle_threshold_line_detection:
+                if theta * 180 / np.pi < angle_threshold_line_detection or theta * 180 / np.pi > 180 - angle_threshold_line_detection:
+                    vertical_params.append([rho, theta])
+                if theta * 180 / np.pi > 90 - angle_threshold_line_detection and theta * 180 / np.pi < 90 + angle_threshold_line_detection:
                     horizontal_params.append([rho, theta])
     return vertical_params, horizontal_params
 
@@ -87,7 +97,7 @@ def get_horizontal_vertical_lines(gray):
 def compute_perspective_matrix(vertical_params, horizontal_params, h, w):
     np_vert = np.abs(np.array(vertical_params))
     np_hori = np.abs(np.array(horizontal_params))
-    pers_matrix =  []
+    pers_matrix = []
     #
     index_rho, index_theta = np_vert.argmax(axis=0)
     vert_max = vertical_params[index_rho]
@@ -101,7 +111,7 @@ def compute_perspective_matrix(vertical_params, horizontal_params, h, w):
     index_rho, index_theta = np_hori.argmin(axis=0)
     hori_min = horizontal_params[index_rho]
 
-    if abs(vert_max[0])-abs(vert_min[0]) < h/5 or abs(hori_max[0])-abs(hori_min[0]) < w/5:
+    if abs(vert_max[0]) - abs(vert_min[0]) < h / 5 or abs(hori_max[0]) - abs(hori_min[0]) < w / 5:
         return pers_matrix
 
     p_left_top = compute_intersection(hori_min, vert_min)
@@ -109,20 +119,22 @@ def compute_perspective_matrix(vertical_params, horizontal_params, h, w):
     p_left_bottom = compute_intersection(hori_max, vert_min)
     p_right_bottom = compute_intersection(hori_max, vert_max)
 
-    pts1 = np.float32([p_left_top, p_right_top,p_left_bottom, p_right_bottom])
+    pts1 = np.float32([p_left_top, p_right_top, p_left_bottom, p_right_bottom])
     pts2 = np.float32([p_left_top, [p_left_top[0] + dist(p_left_top, p_right_top), p_left_top[1]],
-                [p_left_top[0], p_left_top[1] + dist(p_left_top, p_left_bottom)],
-                [p_left_top[0] + dist(p_left_top, p_right_top), p_left_top[1] + dist(p_left_top, p_left_bottom)]])
+                       [p_left_top[0], p_left_top[1] + dist(p_left_top, p_left_bottom)],
+                       [p_left_top[0] + dist(p_left_top, p_right_top),
+                        p_left_top[1] + dist(p_left_top, p_left_bottom)]])
 
     pers_matrix = cv2.getPerspectiveTransform(pts1, pts2)
     return pers_matrix
+
 
 def get_perspective_transformed_im(gray):
     vertical_params, horizontal_params = get_horizontal_vertical_lines(gray)
     if len(vertical_params) > 1 and len(horizontal_params) > 1:
         h, w = gray.shape
         M = compute_perspective_matrix(vertical_params, horizontal_params, h, w)
-        if M ==[]:
+        if M == []:
             return gray
-        gray = cv2.warpPerspective(gray, M , (w, h))
+        gray = cv2.warpPerspective(gray, M, (w, h))
     return gray

@@ -38,7 +38,7 @@ def text_detection_MSER(img):
         canvas1[yy, xx] = color
         canvas3[yy, xx] = color
     #cv2.imshow('result',canvas3)
-    cv2.imshow("canvas1", canvas1)
+    cv2.imshow("canvas_TextRec", canvas1)
 
 
 '''

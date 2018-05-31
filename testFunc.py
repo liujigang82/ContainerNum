@@ -3,9 +3,8 @@ import cv2
 import pytesseract
 from preprocessing.preprocessing import get_perspective_transformed_im
 from postprocessing import get_binary_text_ROI
-import glob
-sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
-#sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
+#sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
+sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
 import textRec, drawRect, get_contours, calculateAngle
 from textProcessing import str_confidence, result_refine, final_refine
 from postprocessing import get_image_patch,get_contour_list, not_inside, contour_rec_ara
@@ -40,7 +39,7 @@ def preprocessing_im(img):
     gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
     #cv2.imshow("perspective", gray)
     cv2.imshow("after deskew", gray)
-    #textRec.text_detection_MSER(gray)
+    textRec.text_detection_MSER(gray)
     #binary
     #edges = cv2.Canny(gray, 50, 150, apertureSize=3)
     #cv2.imshow("edge",edges)
@@ -81,7 +80,7 @@ def postprocessing(gray):
 
 
 
-img = cv2.imread("img/0025.jpg")
+img = cv2.imread("img/0022.jpg")
 cv2.imshow("image", img)
 gray = preprocessing_im(img)
 #get_contour_list(gray)

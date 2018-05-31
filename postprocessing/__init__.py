@@ -68,7 +68,7 @@ def intersection(box1, box2):
     return (x, y, w, h)
 
 
-def not_inside(bbox, coords, method=1):
+def not_inside(bbox, coords, method=0):
     if len(coords) == 0:
         return True
     else:
@@ -190,7 +190,7 @@ def get_binary_text_ROI(gray):
     threshold_height = float(parameters["threshold_height"]["value"])
 
     mser = cv2.MSER_create()
-    mser.setMaxArea(750)
+    mser.setMaxArea(800)
     contours, bboxes = mser.detectRegions(gray)
 
     (height, width) = gray.shape[:2]
@@ -209,7 +209,7 @@ def get_binary_text_ROI(gray):
         yy = cnt[:, 1]
         color = 255
         canvas[yy, xx] = color
-    # cv2.imshow("canvas1",canvas)
+    cv2.imshow("canvas1",canvas)
 
     im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     contour_info_list = []
