@@ -2,11 +2,11 @@
 /.idea/*
 .idea\workspace.xml
 *.pyc
+maintest.py
 /.venv/*
 /backup/*
 /activate/*
-/dist/*
-/build/*
+build/
 /env/*
 /Tesseract-OCR/*
 /test/*
@@ -14,5 +14,7 @@
 *.spec
 /postprocessing/__pycache__/*
 /preprocessing/__pycache__/*
-
+utils/
+img/
+dist/
 Containervenv/
