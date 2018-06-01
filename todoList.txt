@@ -1,6 +1,6 @@
 
 01/06/2018
-1. improve function not_inside.
+1. improve function not_inside. ✓（done by checking intersection of rectangles）
    . Get the intersection of two contours.
    . If the intersection/contours is very small(eg. <1/2), then remove the small contour.
 

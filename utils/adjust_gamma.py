@@ -13,7 +13,7 @@ def adjust_gamma(image, gamma=1.0):
     return cv2.LUT(image, table)
 
 
-img = cv2.imread("../img3/105.jpg")
+img = cv2.imread("../img/img3/21.jpg")
 print(img.shape)
 cv2.imshow("Red", img[:, :, 2])
 cv2.imshow("Green", img[:, :, 1])

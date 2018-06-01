@@ -58,6 +58,13 @@ def get_image_patch(canvas, tesseract_data, result):
 
     return canvas
 
+def union_rect(box1, box2):
+    x = min(box1[0], box2[0])
+    y = min(box1[1], box2[1])
+    w = max(box1[0] + box1[2], box2[0] + box2[2]) - x
+    h = max(box1[1] + box1[3], box2[1] + box2[3]) - y
+    return (x, y, w, h)
+
 
 def intersection(box1, box2):
     x = max(box1[0], box2[0])
@@ -67,6 +74,15 @@ def intersection(box1, box2):
     if w < 0 or h < 0: return (0, 0, 0, 0)
     return (x, y, w, h)
 
+def is_overlapping(box1, box2, intersec):
+    area_box1 = float(box1[2]*box1[3])
+    area_box2 = float(box2[2]*box2[3])
+    area_intersect = float(intersec[2] * intersec[3])
+    if area_intersect == 0:
+        return False
+    elif area_intersect/area_box1 > 0.5 or area_intersect/area_box2 > 0.5:
+        return True
+    return False
 
 def not_inside(bbox, coords, method=1):
     if len(coords) == 0:
@@ -77,7 +93,7 @@ def not_inside(bbox, coords, method=1):
             # compare box and bbox
             if method == 1:  # by intersection.
                 intersects = intersection(box, bbox)
-                if intersects != (0, 0, 0, 0):
+                if is_overlapping(box, bbox, intersects) :
                     return False
             else:   # by check inside.
                 if box[0] <= bbox[0] and box[1] <= bbox[1] \
