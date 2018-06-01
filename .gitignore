@@ -3,6 +3,7 @@
 .idea\workspace.xml
 *.pyc
 /.venv/*
+/backup/*
 /activate/*
 /dist/*
 /build/*
@@ -10,3 +11,7 @@
 /Tesseract-OCR/*
 /test/*
 /__pycache__/*
+*.spec
+/postprocessing/__pycache__/*
+/preprocessing/__pycache__/*
+

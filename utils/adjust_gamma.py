@@ -14,8 +14,13 @@ def adjust_gamma(image, gamma=1.0):
 
 
 img = cv2.imread("../img3/105.jpg")
-
+print(img.shape)
+cv2.imshow("Red", img[:, :, 2])
+cv2.imshow("Green", img[:, :, 1])
+cv2.imshow("Blue", img[:, :, 0])
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+
 clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
 cl1 = clahe.apply(gray)
 cv2.imshow("gray", gray)

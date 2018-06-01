@@ -30,8 +30,6 @@ def contour_rec_ara(contour):
 
 def intersection(box1, box2):
     #intersection = box1 & box2
-    print("~~~~~~~~~~~~~~~~")
-    print(box1, box2)
     x = max(box1[0], box2[0])
     y = max(box1[1], box2[1])
     w = min(box1[0] + box1[2], box2[0] + box2[2]) - x
@@ -40,8 +38,9 @@ def intersection(box1, box2):
     return (x, y, w, h)
 
 
-def not_inside(bbox, coords, method=0):
+def not_inside(bbox, coords, method=1):
     if len(coords) == 0:
+        print("no coords")
         return True
     else:
         for coord in coords:

@@ -1,0 +1,16 @@
+
+01/06/2018
+1. improve function not_inside.
+   . Get the intersection of two contours.
+   . If the intersection/contours is very small(eg. <1/2), then remove the small contour.
+
+2. Deskew.
+   . Find the horizontal lines based on the character regions. (sklearn)
+   . Another horizontal line is derived by moving the line got in step 1 to the bottom.
+   . Note: the vertical lines should lie on the right of the photo.
+
+3. Exposure compensation for backlit photos
+   . Gamma
+   . CLAHE (Looks good, but introduce noises) 
+
+4. 

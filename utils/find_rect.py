@@ -1,11 +1,16 @@
 import cv2
+import sys
 import numpy as np
 from matplotlib import pyplot as plt
 from preprocessing import auto_canny, not_inside, contour_rec_ara, get_perspective_transformed_im
 from sklearn import linear_model
+
+sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum')
+import postprocessing
+
 # global para
 threshold_width = 1/4
-threshold_height = 1/3
+threshold_height = 1/2
 
 def is_point_in(point, pointList):
     for item in pointList:
@@ -66,7 +71,7 @@ def remove_rect(canvas, contour):
     return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
 
 #82,
-imageName = "../img/0022.jpg"
+imageName = "../img3/37.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 
@@ -153,18 +158,19 @@ for cnt in contours:
     '''
 cv2.imshow("rect",backtorgb)
 ### Use RANSAC to find the line of center points
-ransac = linear_model.RANSACRegressor(residual_threshold = 2)
 
-if len(center_points) > 0:
-    X = np.array(center_points)[:, 0]
-    Y = np.array(center_points)[:, 1]
+num_centers = postprocessing.find_region_RANSAC(center_points, "", 800)
+
+if len(num_centers) > 1:
+    ransac = linear_model.RANSACRegressor(residual_threshold=4)
+
+    X = np.array(num_centers)[:, 0]
+    Y = np.array(num_centers)[:, 1]
+
     ransac.fit(X.reshape(-1, 1), Y)
     inlier_mask = ransac.inlier_mask_
-    num_centers = np.array(center_points)[inlier_mask]
 
     ### find the container no. position.
-    num_centers = num_centers[num_centers[:,0].argsort()]
-    print("center:", num_centers)
     line_X = np.arange(X.min(), X.max())[:, np.newaxis]
     line_y_ransac = ransac.predict(line_X)
 
@@ -175,23 +181,24 @@ if len(center_points) > 0:
     plt.ylabel("Response")
 
 ### find the container no. position.Remove the forground not in num_centers.
-index = num_centers.shape[0] -1
-print(len(contour_info_list))
-for item in contour_info_list:
-    if not is_point_in(item["center"], num_centers): #not in num_centers:
-        rect = item["rect"]
-        print("not center:", np.array([item["center"]]).shape, num_centers.shape, np.array(item["center"]))
-        canvas[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]] = 0
-    else:
-        cv2.drawContours(backtorgb, [item["contour"]], -1, (0, 0, 255), 1)
-        if np.array_equal(item["center"], num_centers[index])and item["shape"] == "square":
-            canvas = remove_rect(canvas, item["contour"])
+print(num_centers)
+if len(num_centers) != 0:
+
+    index = num_centers.shape[0] -1
+    for item in contour_info_list:
+        if not is_point_in(item["center"], num_centers): #not in num_centers:
+            rect = item["rect"]
+            #print("not center:", np.array([item["center"]]).shape, num_centers.shape, np.array(item["center"]))
+            canvas[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]] = 0
+        else:
+            cv2.drawContours(backtorgb, [item["contour"]], -1, (0, 0, 255), 1)
+            if np.array_equal(item["center"], num_centers[index])and item["shape"] == "square":
+                canvas = remove_rect(canvas, item["contour"])
 
 cv2.imshow("remove redundant", canvas)
 
 
-
 cv2.imshow("Image", backtorgb)
 plt.show()
-#cv2.waitKeyEx(0)
+
 

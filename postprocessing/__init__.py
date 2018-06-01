@@ -161,15 +161,16 @@ def remove_rect(canvas, contour):
 
 def find_region_RANSAC(center_points, num_centers, y_position):
     ransac = linear_model.RANSACRegressor(residual_threshold=4)
-    if len(center_points) > 0:
+
+    if  len(center_points) > 1:
         X = np.array(center_points)[:, 0]
         Y = np.array(center_points)[:, 1]
         ransac.fit(X.reshape(-1, 1), Y)
         inlier_mask = ransac.inlier_mask_
         # print("inner", inlier_mask)
+
         tmp_centers = np.array(center_points)[inlier_mask]
         tmp_centers = tmp_centers[tmp_centers[:, 0].argsort()]
-
         if tmp_centers.shape[0] < 7:
             return num_centers
 
@@ -177,7 +178,6 @@ def find_region_RANSAC(center_points, num_centers, y_position):
         if y_centers < y_position:
             y_position = y_centers
             num_centers = tmp_centers
-
         outlier_mask = np.logical_not(inlier_mask)
         num_centers = find_region_RANSAC(np.array(center_points)[outlier_mask], num_centers, y_position)
 
@@ -192,7 +192,6 @@ def get_binary_text_ROI(gray):
     mser = cv2.MSER_create()
     mser.setMaxArea(800)
     contours, bboxes = mser.detectRegions(gray)
-
     (height, width) = gray.shape[:2]
     coords = []
     contours = sorted(contours, key=contour_rec_ara, reverse=True)
@@ -202,7 +201,6 @@ def get_binary_text_ROI(gray):
         if x > width * threshold_width and y < height * threshold_height and float(
                 w / h) <= 1 and w < width / 15 and h < height / 15 and not_inside(bbox, coords):
             coords.append(c)
-
     canvas = np.zeros_like(gray)
     for cnt in coords:
         xx = cnt[:, 0]
@@ -210,7 +208,6 @@ def get_binary_text_ROI(gray):
         color = 255
         canvas[yy, xx] = color
     cv2.imshow("canvas1",canvas)
-
     im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     contour_info_list = []
     center_points = []
@@ -230,11 +227,9 @@ def get_binary_text_ROI(gray):
     ### Use RANSAC to find the line of center points
 
     num_centers = find_region_RANSAC(center_points, "", 800)
-
     ### find the container no. position.Remove the forground not in num_centers.
     if len(num_centers) == 0:
         return canvas
-
     index = num_centers.shape[0] - 1
     for item in contour_info_list:
         if not is_point_in(item["center"], num_centers):
@@ -243,13 +238,11 @@ def get_binary_text_ROI(gray):
         else:
             if np.array_equal(item["center"], num_centers[index]) and item["shape"] == "square":
                 canvas = remove_rect(canvas, item["contour"])
-
     ##Get image patch
     x_left = num_centers[0][0]
     x_right = num_centers[num_centers.shape[0] - 1][0]
 
     tmp_centers = num_centers[num_centers[:, 1].argsort()]
-
     y_top = tmp_centers[0][1]
     y_bottom = tmp_centers[tmp_centers.shape[0] - 1][1]
     #print("num_centers:", x_left, x_right, y_top, y_bottom)

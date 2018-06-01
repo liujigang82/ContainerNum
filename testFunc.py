@@ -81,8 +81,8 @@ def postprocessing(gray):
 
 
 #img = cv2.imread("img2/CMAU.jpg")  #0022
-img = cv2.imread("img/0022.jpg")
-cv2.imshow("image", img)
+img = cv2.imread("img3/37.jpg")
+#cv2.imshow("image", img)
 gray = preprocessing_im(img)
 #get_contour_list(gray)
 postprocessing(gray)
