@@ -13,4 +13,4 @@
    . Gamma
    . CLAHE (Looks good, but introduce noises) 
 
-4. 
+4. Rotation detection
