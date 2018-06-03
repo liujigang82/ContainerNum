@@ -175,7 +175,7 @@ def remove_rect(canvas, contour):
     return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
 
 
-def find_region_RANSAC(center_points, num_centers, y_position):
+def f(center_points, num_centers, y_position):
     ransac = linear_model.RANSACRegressor(residual_threshold=4)
 
     if  len(center_points) > 1:
@@ -196,7 +196,6 @@ def find_region_RANSAC(center_points, num_centers, y_position):
             num_centers = tmp_centers
         outlier_mask = np.logical_not(inlier_mask)
         num_centers = find_region_RANSAC(np.array(center_points)[outlier_mask], num_centers, y_position)
-
     return num_centers
 
 

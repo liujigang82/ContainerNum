@@ -6,7 +6,7 @@ def dist(point1, point2):
     return np.sqrt((point1[0]-point2[0])*(point1[0]-point2[0])+(point1[1]-point2[1])*(point1[1]-point2[1]))
 
 
-image = cv2.imread("../img/IMG_4695.jpg")
+image = cv2.imread("../img/img3/76.jpg")
 cv2.imshow("image", image)
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 max_point1 = [122, 258]

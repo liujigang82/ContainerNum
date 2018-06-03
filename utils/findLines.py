@@ -93,7 +93,7 @@ def compute_perspective_matrix(vertical_params, horizontal_params):
 
 #Your image path i-e receipt path
 
-img = cv2.imread('../img/0082.jpg')
+img = cv2.imread('../img/img3/25.jpg')
 img  = resize_im(img)
 
 gray_vis = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -102,7 +102,7 @@ gray = preprocessing(img)
 # detect regions in gray scale image
 height, width = gray.shape
 # lines = cv2.HoughLinesP(gray, rho = 1, theta=np.pi/180, threshold= 100, minLineLength=height /2.0, maxLineGap=30)
-lines = cv2.HoughLines(gray, rho=1, theta=np.pi / 180, threshold=80)
+lines = cv2.HoughLines(gray, rho=1, theta=np.pi / 180, threshold=160)
 vertical_params = []
 horizontal_params = []
 #print("lines:", lines)
