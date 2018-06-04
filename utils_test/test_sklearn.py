@@ -22,6 +22,7 @@ print(X.shape, y.shape)
 # Fit line using all data
 lr = linear_model.LinearRegression()
 lr.fit(X, y)
+print("coef:", lr.coef_)
 
 # Robustly fit linear model with RANSAC algorithm
 ransac = linear_model.RANSACRegressor()

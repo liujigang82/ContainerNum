@@ -1,29 +1,15 @@
 import cv2
 import sys
+sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum')
 import numpy as np
 from matplotlib import pyplot as plt
-from preprocessing import auto_canny, not_inside, contour_rec_ara, get_perspective_transformed_im
+from preprocessing.preprocessing  import get_perspective_transformed_im, resize_im #not_inside,
 from sklearn import linear_model
-
-sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum')
-import postprocessing
+from postprocessing import is_solid_box, not_inside, is_point_in, contour_rec_ara, find_region_RANSAC
 
 # global para
 threshold_width = 1/4
 threshold_height = 1/2
-
-def is_point_in(point, pointList):
-    for item in pointList:
-        if point[0] == item[0] and point[1] == item[1]:
-            return True
-    return False
-
-def resize_im(image):
-    height, width, depth = image.shape
-    imgScale = 600 / width
-    newX, newY = image.shape[1] * imgScale, image.shape[0] * imgScale
-    image = cv2.resize(image, (int(newX), int(newY)))
-    return image
 
 
 def detect(c):
@@ -71,7 +57,7 @@ def remove_rect(canvas, contour):
     return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
 
 #82,
-imageName = "../img3/37.jpg"
+imageName = "img/img3/9.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 
@@ -105,12 +91,16 @@ contours, bboxes = mser.detectRegions(gray)
 # loop over the contours
 coords = []
 contours = sorted(contours, key=contour_rec_ara, reverse=True)
-
+print(len(contours))
 for c in contours:
     bbox = cv2.boundingRect(c)
     x, y, w, h = bbox
     shape = detect(c)
-    if x > width * threshold_width and y < height * threshold_height and float(w / h) <= 1 and w  < width/15 and h < height/15 and not_inside(bbox, coords) :
+    if not is_solid_box(w, h, c.shape[0]) and \
+                    x > width * threshold_width and y < height * threshold_height and \
+                    float(w / h) <= 1 and \
+                    w < width/15 and h < height/15 and \
+            not_inside(bbox, coords) :
         coords.append(c)
 
 
@@ -159,7 +149,7 @@ for cnt in contours:
 cv2.imshow("rect",backtorgb)
 ### Use RANSAC to find the line of center points
 
-num_centers = postprocessing.find_region_RANSAC(center_points, "", 800)
+num_centers, line_x, line_y = find_region_RANSAC(center_points, "", 800, [], [])
 
 if len(num_centers) > 1:
     ransac = linear_model.RANSACRegressor(residual_threshold=4)

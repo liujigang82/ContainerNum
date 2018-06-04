@@ -42,7 +42,6 @@ def postprocessing(gray):
     cv2.imshow("canvas", canvas3)
     image_str = pytesseract.image_to_string(canvas3)
     print(image_str)
-    print("2")
     min_conf = 100
     result = ""
     for line in image_str.splitlines():

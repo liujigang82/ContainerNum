@@ -1,11 +1,12 @@
 import sys
 import cv2
 import pytesseract
-from preprocessing.preprocessing import get_perspective_transformed_im
+import numpy as np
+from preprocessing.preprocessing import get_perspective_transformed_im, resize_im
 from postprocessing import get_binary_text_ROI
 #sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
-sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum\\utils')
-import textRec, drawRect, get_contours, calculateAngle
+sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum')
+from utils_test import textRec, drawRect, get_contours, calculateAngle
 from textProcessing import str_confidence, result_refine, final_refine
 from postprocessing import get_image_patch,get_contour_list, not_inside, contour_rec_ara
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
@@ -21,10 +22,7 @@ threshold_height = 1/3
 
 def preprocessing_im(img):
     # resize
-    height, width, depth = img.shape
-    imgScale = 600/width
-    newX,newY = img.shape[1]*imgScale, img.shape[0]*imgScale
-    img = cv2.resize(img, (int(newX),int(newY)))
+    img = resize_im(img)
     # histogram equalization
     #img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
     #img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
@@ -32,14 +30,17 @@ def preprocessing_im(img):
     #img = cv2.fastNlMeansDenoisingColored(img, None, 7, 7, 7, 21)
     # color to gray
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
     # perspective transform
     gray = get_perspective_transformed_im(gray)
 
     smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
     gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
+
+    textRec.text_detection_MSER(gray)
     #cv2.imshow("perspective", gray)
     cv2.imshow("after deskew", gray)
-    textRec.text_detection_MSER(gray)
+
     #binary
     #edges = cv2.Canny(gray, 50, 150, apertureSize=3)
     #cv2.imshow("edge",edges)
@@ -50,9 +51,11 @@ def preprocessing_im(img):
 def postprocessing(gray):
     canvas3 = get_binary_text_ROI(gray)
     #canvas3 = calculateAngle.calculateAngle(canvas3)
+
     image_str = pytesseract.image_to_string(canvas3)
     print("result:", image_str)
     cv2.imshow("canvas :", canvas3)
+
     min_conf = 100
     result = ""
     for line in image_str.splitlines():
@@ -62,6 +65,9 @@ def postprocessing(gray):
             min_conf = cur_conf
     result = result_refine(result)
     print("results:", result)
+    result = final_refine(result)
+    print("refined results:", result)
+
     '''
     tesseract_data = pytesseract.image_to_data(canvas3, output_type="dict")
     print( pytesseract.image_to_data(canvas3))
@@ -73,15 +79,12 @@ def postprocessing(gray):
     result = result_refine(result)
     print("2", result)
     '''
-    result = final_refine(result)
-    print("refined results:", result)
-
     return result
 
 
-
+file = "img/img3/9.jpg"
 #img = cv2.imread("img2/CMAU.jpg")  #0022
-img = cv2.imread("img3/37.jpg")
+img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
 #cv2.imshow("image", img)
 gray = preprocessing_im(img)
 #get_contour_list(gray)
