@@ -26,7 +26,7 @@ def preprocessing_im(img):
     smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
     gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
 
-    #cv2.imshow("perspective", gray)
+    cv2.imshow("perspective", gray)
     #cv2.imshow("after deskew", gray)
     #textRec.text_detection_MSER(gray)
     #binary

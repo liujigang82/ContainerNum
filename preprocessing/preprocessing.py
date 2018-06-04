@@ -70,8 +70,8 @@ def check_line_selected(gray, vertical_params, horizontal_params):
     pers_matrix =  []
     backtorgb = cv2.cvtColor(gray, cv2.COLOR_GRAY2RGB)
 
-    for rho, theta in vertical_params:
-        backtorgb = draw_line(backtorgb, rho, theta)
+    #for rho, theta in vertical_params:
+    #    backtorgb = draw_line(backtorgb, rho, theta)
 
     index_rho, index_theta = np_vert.argmax(axis=0)
     vert_max = vertical_params[index_rho]
@@ -134,7 +134,7 @@ def get_perspective_transformed_im(gray):
     #print("horizontal:", horizontal_params)
     h, w = gray.shape
     hori_line = get_text_line(gray)
-    hori_line_2 = [hori_line[0] + h/2, hori_line[1]]
+    hori_line_2 = [hori_line[0] + h/6, hori_line[1]]
     horizontal_params = []
     horizontal_params.append(hori_line)
     horizontal_params.append(hori_line_2)
@@ -146,7 +146,7 @@ def get_perspective_transformed_im(gray):
         M = compute_perspective_matrix(vertical_params, horizontal_params, h, w)
         if M ==[]:
             return gray
-        #gray = cv2.warpPerspective(gray, M , (w, h))
+        gray = cv2.warpPerspective(gray, M , (w, h))
     return gray
 
 
