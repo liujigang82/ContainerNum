@@ -243,8 +243,6 @@ def get_contour(gray):
         yy = cnt[:, 1]
         color = 255
         canvas[yy, xx] = color
-    cv2.imshow("canvas", canvas)
-    cv2.waitKey(1000)
     im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     return contours, canvas
 
@@ -308,32 +306,30 @@ def get_binary_text_ROI(gray):
         return canvas
 
     index = num_centers.shape[0] - 1
+    pts = []
     for item in contour_info_list:
+        rect = item["rect"]
         if not is_point_in(item["center"], num_centers):
-            rect = item["rect"]
             canvas[rect[1]:rect[1] + rect[3], rect[0]:rect[0] + rect[2]] = 0
         else:
+            pts.append([rect[0], rect[1]])
+            pts.append([rect[0]+rect[2], rect[1]+rect[3]])
             if np.array_equal(item["center"], num_centers[index]) and item["shape"] == "square":
                 canvas = remove_rect(canvas, item["contour"])
 
     ##Get image patch
-    '''
-    x_left = num_centers[0][0]
-    x_right = num_centers[num_centers.shape[0] - 1][0]
+    if len(pts) == 0:
+        return canvas
 
-    tmp_centers = num_centers[num_centers[:, 1].argsort()]
-    y_top = tmp_centers[0][1]
-    y_bottom = tmp_centers[tmp_centers.shape[0] - 1][1]
-    #print("num_centers:", x_left, x_right, y_top, y_bottom)
-    #print(tmp_centers)
-    canvas = canvas[y_top - 18:y_bottom+18, x_left-18:x_right+18]
-    '''
+    max_x, max_y = max(pts)
+    min_x, min_y = min(pts)
+    canvas = canvas[min_y - 10:max_y+10, min_x-10:max_x+10]
     return canvas
 
 
 def get_contour_list(gray):
     canvas = get_binary_text_ROI(gray)
-    cv2.imshow("canvas", canvas)
+    #cv2.imshow("canvas", canvas)
     im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     backtorgb = cv2.cvtColor(gray, cv2.COLOR_GRAY2RGB)
     for c in contours:
@@ -358,7 +354,6 @@ def get_contour_list(gray):
             cv2.drawContours(backtorgb, [c], -1, (255, 0, 255), 2)
             # cv2.rectangle(backtorgb, (x, y), (x + w, y + h), (255, 0, 255), 2)
         if shape == "unidentified":
-            # print("unidentified")
             cv2.drawContours(backtorgb, [c], -1, (180, 180, 0), 2)
             # cv2.rectangle(backtorgb, (x, y), (x + w, y + h), (180, 180, 0), 2)
     cv2.imshow("Image", backtorgb)

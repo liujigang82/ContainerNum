@@ -9,7 +9,7 @@ pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'\
 
 def preprocessing_im(img):
     # resize
-    print(img.shape)
+
     img = resize_im(img)
     # histogram equalization
     #img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
@@ -37,7 +37,6 @@ def preprocessing_im(img):
 
 
 def postprocessing(gray):
-
     canvas3 = get_binary_text_ROI(gray)
     cv2.imshow("canvas", canvas3)
     image_str = pytesseract.image_to_string(canvas3)
@@ -58,13 +57,14 @@ def postprocessing(gray):
     refined_result = pytesseract.image_to_string(canvas3)
     refined_result = result_refine(refined_result)
     '''
+
     refined_result = final_refine(result)
 
     return  refined_result
 
 def num_rec(file):
     img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
-    cv2.imshow("img",img)
+    #cv2.imshow("img",img)
     gray = preprocessing_im(img)
     print("preprocessing done...")
     return postprocessing(gray)

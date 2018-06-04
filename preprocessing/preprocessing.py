@@ -36,7 +36,7 @@ def get_horizontal_vertical_lines(gray):
     gray = auto_canny(gray)
     #detect regions in gray scale image
     height, width = gray.shape
-    lines = cv2.HoughLines(gray, rho=1, theta =np.pi/180, threshold = 200)
+    lines = cv2.HoughLines(gray, rho=1, theta =np.pi/180, threshold = 160)
 
     if lines is not None:
         for line in lines:
@@ -111,7 +111,7 @@ def compute_perspective_matrix(vertical_params, horizontal_params, h, w):
     index_rho, index_theta = np_hori.argmin(axis=0)
     hori_min = horizontal_params[index_rho]
 
-    if abs(vert_max[0])-abs(vert_min[0]) < h/5 or abs(hori_max[0])-abs(hori_min[0]) < w/5:
+    if abs(vert_max[0])-abs(vert_min[0]) < h/10 or abs(hori_max[0])-abs(hori_min[0]) < w/10:
         return pers_matrix
 
     p_left_top = compute_intersection(hori_min, vert_min)
@@ -138,8 +138,8 @@ def get_perspective_transformed_im(gray):
     horizontal_params = []
     horizontal_params.append(hori_line)
     horizontal_params.append(hori_line_2)
-    print("vertical:", vertical_params)
-    print("hori:", horizontal_params)
+    #print("vertical:", vertical_params)
+    #print("hori:", horizontal_params)
     if len(vertical_params) > 1 and len(horizontal_params) > 1:
         h, w = gray.shape
         check_line_selected(gray, vertical_params, horizontal_params)
