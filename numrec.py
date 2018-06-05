@@ -25,7 +25,7 @@ def preprocessing_im(img):
 
 def postprocessing(gray):
     canvas3 = get_binary_text_ROI(gray)
-    #cv2.imshow("canvas", canvas3)
+    cv2.imshow("canvas", canvas3)
     image_str = pytesseract.image_to_string(canvas3)
     print(image_str)
     min_conf = 100

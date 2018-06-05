@@ -79,7 +79,7 @@ def postprocessing(gray):
     return result
 
 
-file = "img/img2/GESU.jpg" #oolu.jpg
+file = "img/img2/IMTU-.png" #oolu.jpg
 #img = cv2.imread("img2/CMAU.jpg")  #0022
 img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
 #cv2.imshow("image", img)
