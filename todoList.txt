@@ -18,4 +18,8 @@
 05/06/2018
 1. refine function is_solid_box() in postprocessing.
 
-2.
+2. re-train tesseract
+
+3. Build so file for Ubuntu.
+
+4.
