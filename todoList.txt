@@ -14,3 +14,8 @@
    . CLAHE (Looks good, but introduce noises) 
 
 4. Rotation detection
+
+05/06/2018
+1. refine function is_solid_box() in postprocessing.
+
+2.

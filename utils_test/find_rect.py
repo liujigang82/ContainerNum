@@ -3,7 +3,7 @@ import sys
 sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum')
 import numpy as np
 from matplotlib import pyplot as plt
-from preprocessing.preprocessing  import get_perspective_transformed_im, resize_im #not_inside,
+from preprocessing  import get_perspective_transformed_im, resize_im #not_inside,
 from sklearn import linear_model
 from postprocessing import is_solid_box, not_inside, is_point_in, contour_rec_ara, find_region_RANSAC
 
@@ -17,11 +17,10 @@ def detect(c):
     shape = "unidentified"
 
     peri = cv2.arcLength(c, True)
-    approx = cv2.approxPolyDP(c, 0.04 * peri, True)
+    approx = cv2.approxPolyDP(c, 0.02 * peri, True)
 
-    #if cv2.isContourConvex(approx) and abs(cv2.contourArea(c))<200:
-        #return shape
     if not cv2.isContourConvex(approx) or abs(cv2.contourArea(c)) < 50:
+        print(cv2.isContourConvex(approx), abs(cv2.contourArea(c)))
         return shape
     # if the shape is a triangle, it will have 3 vertices
     if len(approx) == 3:
@@ -57,7 +56,7 @@ def remove_rect(canvas, contour):
     return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
 
 #82,
-imageName = "img/img3/9.jpg"
+imageName = "img/img2/GESU.jpg"
 
 img = cv2.imdecode(np.fromfile(imageName,dtype = np.uint8),-1)
 
@@ -152,7 +151,7 @@ cv2.imshow("rect",backtorgb)
 num_centers, line_x, line_y = find_region_RANSAC(center_points, "", 800, [], [])
 
 if len(num_centers) > 1:
-    ransac = linear_model.RANSACRegressor(residual_threshold=4)
+    ransac = linear_model.RANSACRegressor(residual_threshold=10)
 
     X = np.array(num_centers)[:, 0]
     Y = np.array(num_centers)[:, 1]

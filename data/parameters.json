@@ -10,6 +10,9 @@
   "line_thickness_rect_removal": {
     "type": "int",
     "value":"2"
+  },
+  "ratio_contour_area":{
+    "type":"float",
+    "value":0.8
   }
-
 }

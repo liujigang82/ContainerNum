@@ -35,7 +35,7 @@ def find_index_word(input_str):
     sub_str_list = input_str.split(" ")
     sub_str_list = [item for item in sub_str_list if item is not ""]
     for sub in sub_str_list:
-        if isAlpha(sub) and len(sub)>=2:
+        if isAlpha(sub) and len(sub) >= 2:
             word = sub
 
     if word == "":
@@ -46,6 +46,11 @@ def find_index_word(input_str):
     elif len(word) < 4 and index_sub > 0 and len(word) + len(sub_str_list[index_sub - 1]) <= 4:
         word = " ".join(sub_str_list[index_sub-1 : index_sub])
         digits = " ".join(sub_str_list[index_sub +1 :len(sub_str_list)])
+
+    numbers = sum(c.isdigit() for c in digits)
+    if numbers > 7:
+        digits = digits[0:len(digits)-(numbers - 7)]
+
     return word, digits
 
 

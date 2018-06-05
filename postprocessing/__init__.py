@@ -145,7 +145,7 @@ def detect(c):
     shape = "unidentified"
 
     peri = cv2.arcLength(c, True)
-    approx = cv2.approxPolyDP(c, 0.04 * peri, True)
+    approx = cv2.approxPolyDP(c, 0.02 * peri, True)
 
     if not cv2.isContourConvex(approx) or abs(cv2.contourArea(c)) < 50:
         return shape
@@ -209,11 +209,22 @@ def find_region_RANSAC(center_points, num_centers, y_position, line_x, line_y):
                                                          line_x, line_y)
     return num_centers, line_x, line_y
 
-def is_solid_box(w, h , num):
+def is_solid_box(cnt, method = 1):
+    x, y, w, h = cv2.boundingRect(cnt)
+    cnt_hull = cv2.convexHull(cnt)
+    #print("~~~",cv2.contourArea(cnt),  cv2.contourArea(cnt_1), w*h )
     if float(h)/float(w) > 3:
         return False
-    if float(num) / float(w * h) < 0.7:
-        return  False
+    if method == 1:
+        if float(cnt.shape[0]) / float(w*h) < 0.65:
+            return  False
+    else:
+        area = cv2.contourArea(cnt_hull)
+        if area == 0:
+            return True
+        if float(cnt.shape[0]) / float(area) < 0.90:
+            return False
+
     return True
 
 def get_contour(gray):
@@ -230,7 +241,7 @@ def get_contour(gray):
     for c in contours:
         bbox = cv2.boundingRect(c)
         x, y, w, h = bbox
-        if not is_solid_box(w, h, c.shape[0]) and \
+        if not is_solid_box(c) and \
                         x > width * threshold_width and y < height * threshold_height and \
                         float(w / h) <= 1 and \
                         w < width / 15 and h < height / 15 and \
@@ -243,6 +254,7 @@ def get_contour(gray):
         yy = cnt[:, 1]
         color = 255
         canvas[yy, xx] = color
+    #cv2.imshow("canvas_ori",canvas)
     im2, contours, hierarchy = cv2.findContours(canvas.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     return contours, canvas
 
@@ -323,7 +335,10 @@ def get_binary_text_ROI(gray):
 
     max_x, max_y = max(pts)
     min_x, min_y = min(pts)
-    canvas = canvas[min_y - 10:max_y+10, min_x-10:max_x+10]
+
+    min_y = min_y - 10 if min_y - 10 >=0 else 0
+    min_x = min_x - 10 if min_x - 10 >=0 else 0
+    canvas = canvas[min_y:max_y+10, min_x:max_x+10]
     return canvas
 
 

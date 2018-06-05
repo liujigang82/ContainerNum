@@ -2,7 +2,7 @@ import sys
 import cv2
 import pytesseract
 import numpy as np
-from preprocessing.preprocessing import get_perspective_transformed_im, resize_im
+from preprocessing import get_perspective_transformed_im, resize_im
 from postprocessing import get_binary_text_ROI
 #sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
 sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum')
@@ -11,9 +11,6 @@ from textProcessing import str_confidence, result_refine, final_refine
 from postprocessing import get_image_patch,get_contour_list, not_inside, contour_rec_ara
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'
-mser = cv2.MSER_create()
-mser.setMinArea(50)
-mser.setMaxArea(750)
 
 # global para
 threshold_width = 1/4
@@ -82,7 +79,7 @@ def postprocessing(gray):
     return result
 
 
-file = "img/test/9.jpg"
+file = "img/img2/GESU.jpg" #oolu.jpg
 #img = cv2.imread("img2/CMAU.jpg")  #0022
 img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
 #cv2.imshow("image", img)

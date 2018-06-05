@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import pytesseract
-from preprocessing.preprocessing import get_perspective_transformed_im,resize_im
+from preprocessing import get_perspective_transformed_im,resize_im
 from postprocessing import get_binary_text_ROI, get_image_patch, calculateAngle
 from textProcessing import result_refine, final_refine, str_confidence
 
@@ -9,13 +9,7 @@ pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'\
 
 def preprocessing_im(img):
     # resize
-
     img = resize_im(img)
-    # histogram equalization
-    #img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
-    #img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
-    #img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
-    #img = cv2.fastNlMeansDenoisingColored(img, None, 7, 7, 7, 21)
     # color to gray
     if len(img.shape) == 3:
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -25,20 +19,13 @@ def preprocessing_im(img):
     gray = get_perspective_transformed_im(gray)
     smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
     gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
-
-    cv2.imshow("perspective", gray)
-    #cv2.imshow("after deskew", gray)
-    #textRec.text_detection_MSER(gray)
-    #binary
-    #edges = cv2.Canny(gray, 50, 150, apertureSize=3)
-    #cv2.imshow("edge",edges)
-    #(threshold, im_bw) = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+    #cv2.imshow("perspective", gray)
     return gray
 
 
 def postprocessing(gray):
     canvas3 = get_binary_text_ROI(gray)
-    cv2.imshow("canvas", canvas3)
+    #cv2.imshow("canvas", canvas3)
     image_str = pytesseract.image_to_string(canvas3)
     print(image_str)
     min_conf = 100

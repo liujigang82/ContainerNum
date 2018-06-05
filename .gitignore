@@ -2,6 +2,7 @@
 /.idea/*
 .idea\workspace.xml
 *.pyc
+*.c
 /.venv/*
 /backup/*
 /activate/*

@@ -25,3 +25,4 @@ This project is built using Python + PyQT5 + Opencv + Sklearn + Tesseract
 	Parameter setting.
 - **img**
 	Testing images
+
