@@ -40,7 +40,7 @@ def is_text(str):
 def find_character_index(y, x):
     return [ a for a in range(len(y)) if y[a] == x]
 
-img = cv2.imread('../img/patch_0009.png')
+img = cv2.imread('../img/test/image.jpg')
 cv2.imshow("image", img)
 #gray = preprocessing(img)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

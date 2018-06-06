@@ -34,6 +34,7 @@ def auto_canny(image, sigma=0.33):
 def get_horizontal_vertical_lines(gray):
     vertical_params=[]
     gray = auto_canny(gray)
+    #cv2.imshow("edge", gray)
     #detect regions in gray scale image
     height, width = gray.shape
     lines = cv2.HoughLines(gray, rho=1, theta =np.pi/180, threshold = 160)
@@ -134,6 +135,8 @@ def get_perspective_transformed_im(gray):
     #print("horizontal:", horizontal_params)
     h, w = gray.shape
     hori_line = get_text_line(gray)
+    if hori_line[0] == 0 and hori_line[1] == 0:
+        return gray, False
     hori_line_2 = [hori_line[0] + h/6, hori_line[1]]
     horizontal_params = []
     horizontal_params.append(hori_line)
@@ -147,12 +150,13 @@ def get_perspective_transformed_im(gray):
         if M ==[]:
             return gray
         gray = cv2.warpPerspective(gray, M , (w, h))
-    return gray
+    return gray, True
 
 
 def resize_im(image):
     im_shape = image.shape
-    imgScale = 600/im_shape[1]
+    #imgScale = 600/im_shape[1]
+    imgScale = 900 / im_shape[1]
     newX,newY = image.shape[1]*imgScale, image.shape[0]*imgScale
     image = cv2.resize(image, (int(newX),int(newY)))
     return image

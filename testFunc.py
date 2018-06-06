@@ -27,14 +27,18 @@ def preprocessing_im(img):
     #img = cv2.fastNlMeansDenoisingColored(img, None, 7, 7, 7, 21)
     # color to gray
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
+    textRec.text_detection_MSER(gray)
     # perspective transform
-    gray = get_perspective_transformed_im(gray)
+    gray, flag = get_perspective_transformed_im(gray)
+    if not flag:
+        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+        gray = clahe.apply(gray)
+        gray, flag = get_perspective_transformed_im(gray)
 
     smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
     gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
 
-    textRec.text_detection_MSER(gray)
+
     #cv2.imshow("perspective", gray)
     cv2.imshow("after deskew", gray)
 
@@ -79,7 +83,7 @@ def postprocessing(gray):
     return result
 
 
-file = "img/img2/IMTU-.png" #oolu.jpg
+file = "img/img3/35.jpg" #oolu.jpg
 #img = cv2.imread("img2/CMAU.jpg")  #0022
 img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
 #cv2.imshow("image", img)

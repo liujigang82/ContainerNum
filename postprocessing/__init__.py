@@ -209,7 +209,7 @@ def find_region_RANSAC(center_points, num_centers, y_position, line_x, line_y):
                                                          line_x, line_y)
     return num_centers, line_x, line_y
 
-def is_solid_box(cnt, method = 1):
+def is_solid_box(cnt, method = 0):
     x, y, w, h = cv2.boundingRect(cnt)
     cnt_hull = cv2.convexHull(cnt)
     #print("~~~",cv2.contourArea(cnt),  cv2.contourArea(cnt_1), w*h )
@@ -270,7 +270,7 @@ def get_text_line(gray):
             center_points.append([int(x + w / 2), int(y + h / 2)])
     ### Use RANSAC to find the line of center points
     num_centers, line_X, line_Y = find_region_RANSAC(center_points, "", 800, [], [])
-    # print("Line:", line_X, line_Y)
+    #print("Line:", line_X, line_Y)
     #print("number cernter:", num_centers)
     if len(line_X) < 2:
         return 0, 0

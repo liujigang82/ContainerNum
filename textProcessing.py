@@ -35,13 +35,13 @@ def find_index_word(input_str):
     sub_str_list = input_str.split(" ")
     sub_str_list = [item for item in sub_str_list if item is not ""]
     for sub in sub_str_list:
-        if isAlpha(sub) and len(sub) >= 2:
+        if isAlpha(sub) and len(sub) >= 1:
             word = sub
 
     if word == "":
         return "", input_str
     index_sub = sub_str_list.index(word)
-    if len(word) == 4:
+    if len(word) >= 4:
         digits = " ".join(sub_str_list[index_sub + 1:len(sub_str_list)])
     elif len(word) < 4 and index_sub > 0 and len(word) + len(sub_str_list[index_sub - 1]) <= 4:
         word = " ".join(sub_str_list[index_sub-1 : index_sub])
@@ -65,7 +65,7 @@ def result_refine(input_str):
 
     text, digits_list = find_index_word(input_str)
     result_str = text + " " + digits_list
-
+    #print("text:", text, "digits:", digits_list)
     return result_str
 
 
@@ -85,8 +85,14 @@ def final_refine(input_str):
                 sub_str_list[0] = tmp + "U"
         if "0" in sub_str_list[0]:
             sub_str_list[0] = sub_str_list[0].replace("0", "O")
+        if "1" in sub_str_list[0]:
+            sub_str_list[0] = sub_str_list[0].replace("1", "I")
+    elif isAlpha(sub_str_list[0]) and len(sub_str_list[0]) > 4:
+        index_u = sub_str_list[0].index("U")
+        sub_str_list[0] = sub_str_list[0][0:index_u+1]
     else:
         return input_str
+
     tmp_text = "".join(sub_str_list[0 :len(sub_str_list)])
 
     if len(tmp_text) == 11:

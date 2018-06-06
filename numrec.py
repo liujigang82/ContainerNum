@@ -16,7 +16,7 @@ def preprocessing_im(img):
     else:
         gray = img
     # perspective transform
-    gray = get_perspective_transformed_im(gray)
+    gray, flag = get_perspective_transformed_im(gray)
     smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
     gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
     #cv2.imshow("perspective", gray)
@@ -36,6 +36,7 @@ def postprocessing(gray):
             result = line
             min_conf = cur_conf
     result = result_refine(result)
+
     '''
     tesseract_data = pytesseract.image_to_data(canvas3, output_type="dict")
     canvas3 = get_image_patch(canvas3, tesseract_data, result)
