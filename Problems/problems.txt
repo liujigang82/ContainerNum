@@ -22,3 +22,10 @@
 
 识别不好： 56， 71， 78
 特别的： 53， 58， 68
+
+
+
+img2/TCLU.jpg
+img2/OOLU.jpg
+img2/NIDU.jpg
+img2/TEMU.jpg
