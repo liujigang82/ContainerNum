@@ -1,0 +1,16 @@
+pyinstaller -F --icon=icon\container.ico --clean main.py  --hidden-import scipy._lib.messagestream --hidden-import sklearn.neighbors.typedefs
+
+pyinstaller --onefile --windowed --icon=icon\container.ico main.py  --hidden-import scipy._lib.messagestream --hidden-import sklearn.neighbors.typedefs
+
+pyinstaller --onefile --clean --icon=icon\container.ico main.py  --hidden-import scipy._lib.messagestream --hidden-import sklearn.neighbors.typedefs
+
+
+pyinstaller -F --icon=icon\container.ico main.py  --hidden-import scipy._lib.messagestream --hidden-import sklearn.neighbors.typedefs
+
+
+pyinstaller -F main.py
+
+
+cython test.py
+gcc -c -fPIC -I /usr/include/python3.6/  test.c 
+gcc -shared test.o -o test.so 

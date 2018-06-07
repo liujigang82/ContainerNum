@@ -34,7 +34,7 @@ def auto_canny(image, sigma=0.33):
 def get_horizontal_vertical_lines(gray):
     vertical_params=[]
     gray = auto_canny(gray)
-    #cv2.imshow("edge", gray)
+    cv2.imshow("edge", gray)
     #detect regions in gray scale image
     height, width = gray.shape
     lines = cv2.HoughLines(gray, rho=1, theta =np.pi/180, threshold = 160)

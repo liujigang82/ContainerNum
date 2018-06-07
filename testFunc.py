@@ -8,7 +8,6 @@ from postprocessing import get_binary_text_ROI
 sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum')
 from utils_test import textRec, drawRect, get_contours, calculateAngle
 from textProcessing import str_confidence, result_refine, final_refine
-from postprocessing import get_image_patch,get_contour_list, not_inside, contour_rec_ara
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'
 
@@ -66,7 +65,7 @@ def postprocessing(gray):
             min_conf = cur_conf
     result = result_refine(result)
     print("results:", result)
-    result = final_refine(result)
+    result, flag = final_refine(result)
     print("refined results:", result)
 
     '''
@@ -83,7 +82,7 @@ def postprocessing(gray):
     return result
 
 
-file = "img/img3/35.jpg" #oolu.jpg
+file = "img/img1/0017.jpg" #oolu.jpg
 #img = cv2.imread("img2/CMAU.jpg")  #0022
 img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
 #cv2.imshow("image", img)

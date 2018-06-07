@@ -26,3 +26,7 @@ This project is built using Python + PyQT5 + Opencv + Sklearn + Tesseract
 - **img**
 	Testing images
 
+### COMMAND:
+pyinstaller --onefile --clean --icon=icon\container.ico main.py  --hidden-import scipy._lib.messagestream --hidden-import sklearn.neighbors.typedefs
+
+python setup.py build_ext --inplace

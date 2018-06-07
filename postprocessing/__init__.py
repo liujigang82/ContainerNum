@@ -15,53 +15,6 @@ def is_point_in(point, pointList):
     return False
 
 
-def get_image_patch(canvas, tesseract_data, result):
-    t_boundary = 10
-    for i in range(len(tesseract_data["text"])):
-        itemList = tesseract_data["text"]
-        text = [character for character in itemList[i] if character.isalpha()]
-        text = "".join(item for item in text)
-        if text in result and len(text) >= 2 and isAlpha(text):
-            level_index = find_character_index(tesseract_data["level"], tesseract_data["level"][i])
-            page_index = find_character_index(tesseract_data["level"], tesseract_data["level"][i])
-            block_index = find_character_index(tesseract_data["block_num"], tesseract_data["block_num"][i])
-            par_index = find_character_index(tesseract_data["par_num"], tesseract_data["par_num"][i])
-            line_index = find_character_index(tesseract_data["line_num"], tesseract_data["line_num"][i])
-            word_index = tesseract_data["word_num"][i]
-
-            index = [i for i in level_index if
-                     i in page_index and i in block_index and i in par_index and i in line_index]
-            to_remove = []
-            for i in range(len(index)):
-                if not containDigAlph(tesseract_data["text"][index[i]]) or tesseract_data["word_num"][
-                    index[i]] < word_index:
-                    to_remove.append(index[i])
-                    break
-            for i in range(len(to_remove)):
-                index.remove(to_remove[i])
-
-            # index = index[word_index-1:len(index)]
-            left1 = tesseract_data["left"][index[0]]
-            left2 = tesseract_data["left"][index[len(index) - 1]]
-            top1 = tesseract_data["top"][index[0]]
-            top2 = tesseract_data["top"][index[len(index) - 1]]
-
-            width1 = tesseract_data["width"][index[0]]
-            width2 = tesseract_data["width"][index[len(index) - 1]]
-            height1 = tesseract_data["height"][index[0]]
-            height2 = tesseract_data["height"][index[len(index) - 1]]
-
-            left = min(left1, left2)
-            top = min(top1, top2)
-            right = max(left1 + width1, left2 + width2)
-            bottom = max(top1 + height1, top2 + height2)
-
-            top_tmp = top - t_boundary if top - t_boundary > 0 else 0
-            canvas = canvas[top_tmp:bottom + t_boundary, left - t_boundary:right + t_boundary]
-
-    return canvas
-
-
 def union_rect(box1, box2):
     x = min(box1[0], box2[0])
     y = min(box1[1], box2[1])
@@ -83,16 +36,17 @@ def is_overlapping(box1, box2, intersec):
     area_box1 = float(box1[2] * box1[3])
     area_box2 = float(box2[2] * box2[3])
     area_intersect = float(intersec[2] * intersec[3])
+
     if area_intersect == 0:
         return False
-    elif area_intersect / area_box1 > 0.3 or area_intersect / area_box2 > 0.3:
+    elif area_intersect / area_box1 > 0.5 or area_intersect / area_box2 > 0.5:
         return True
     return False
 
 
-def not_inside(bbox, coords, method=1):
+def is_inside(bbox, coords, method = 1):
     if len(coords) == 0:
-        return True
+        return False
     else:
         for coord in coords:
             box = cv2.boundingRect(coord)
@@ -100,12 +54,12 @@ def not_inside(bbox, coords, method=1):
             if method == 1:  # by intersection.
                 intersects = intersection(box, bbox)
                 if is_overlapping(box, bbox, intersects):
-                    return False
+                    return True
             else:  # by check inside.
                 if box[0] <= bbox[0] and box[1] <= bbox[1] \
                         and box[0] + box[2] >= bbox[0] + bbox[2] and box[1] + box[3] >= bbox[1] + bbox[3]:
-                    return False
-        return True
+                    return True
+        return False
 
 
 def calculateAngle(binary):
@@ -132,12 +86,14 @@ def calculateAngle(binary):
     return rotated
 
 
-def contour_rec_ara(contour):
-    cnt = cv2.convexHull(contour)
-    return cv2.contourArea(contour)
-    #bbox = cv2.boundingRect(contour)
-    #x, y, w, h = bbox
-    #return w * h
+def contour_rec_ara(contour, method = 0):
+    if method == 1:
+        cnt = cv2.convexHull(contour)
+        return cv2.contourArea(cnt)
+    else:
+        bbox = cv2.boundingRect(contour)
+        x, y, w, h = bbox
+    return w * h
 
 
 def detect(c):
@@ -233,7 +189,7 @@ def get_contour(gray):
     threshold_height = float(parameters["threshold_height"]["value"])
 
     mser = cv2.MSER_create()
-    mser.setMaxArea(750)
+    #mser.setMaxArea(750)
     contours, bboxes = mser.detectRegions(gray)
     (height, width) = gray.shape[:2]
     coords = []
@@ -245,7 +201,7 @@ def get_contour(gray):
                         x > width * threshold_width and y < height * threshold_height and \
                         float(w / h) <= 1 and \
                         w < width / 15 and h < height / 15 and \
-                not_inside(bbox, coords):
+                not is_inside(bbox, coords):
             coords.append(c)
 
     canvas = np.zeros_like(gray)

@@ -35,7 +35,7 @@ def find_index_word(input_str):
     sub_str_list = input_str.split(" ")
     sub_str_list = [item for item in sub_str_list if item is not ""]
     for sub in sub_str_list:
-        if isAlpha(sub) and len(sub) >= 1:
+        if isAlpha(sub) and len(sub) >= 2:
             word = sub
 
     if word == "":
@@ -47,15 +47,17 @@ def find_index_word(input_str):
         word = " ".join(sub_str_list[index_sub-1 : index_sub])
         digits = " ".join(sub_str_list[index_sub +1 :len(sub_str_list)])
 
+    if "I" in digits:
+        digits = digits.replace("I", "1")
+
     numbers = sum(c.isdigit() for c in digits)
     if numbers > 7:
         digits = digits[0:len(digits)-(numbers - 7)]
-
     return word, digits
 
 
 def find_character_index(input_str, character):
-    return [ a for a in range(len(input_str)) if input_str[a] == character]
+    return [a for a in range(len(input_str)) if input_str[a] == character]
 
 
 def result_refine(input_str):
@@ -65,7 +67,7 @@ def result_refine(input_str):
 
     text, digits_list = find_index_word(input_str)
     result_str = text + " " + digits_list
-    #print("text:", text, "digits:", digits_list)
+    print("text:", text, "digits:", digits_list)
     return result_str
 
 
@@ -75,7 +77,7 @@ def final_refine(input_str):
     sub_str_list = [item for item in sub_str_list if item is not ""]
 
     if len(sub_str_list) <= 0:
-        return input_str
+        return False, input_str
 
     if isAlpha(sub_str_list[0]) and len(sub_str_list[0]) == 4:
         last_char = sub_str_list[0][len(sub_str_list[0])-1].lower()
@@ -91,24 +93,26 @@ def final_refine(input_str):
         index_u = sub_str_list[0].index("U")
         sub_str_list[0] = sub_str_list[0][0:index_u+1]
     else:
-        return input_str
+        return False, input_str
 
     tmp_text = "".join(sub_str_list[0 :len(sub_str_list)])
-
+    print("tmp_text", tmp_text)
+    flag_right = False
     if len(tmp_text) == 11:
         code = get_encode_code(tmp_text)
         if tmp_text[len(tmp_text) - 1] == str(code):
+            flag_right = True
             tmp_text = " ".join(sub_str_list[0:len(sub_str_list)])
         else:
             str_list = list(tmp_text)
             str_list[len(tmp_text) - 1] = str(code)
-            tmp_text = "".join(str_list)
+            tmp_text = " ".join(str_list)
 
     elif len(tmp_text) == 10:
         code = get_encode_code(tmp_text)
         code_text = str(code)
-        tmp_text = tmp_text + code_text
-    return tmp_text
+        tmp_text = " ".join(sub_str_list[0:len(sub_str_list)]) + " " + code_text
+    return tmp_text, flag_right
 
 
 

@@ -46,8 +46,8 @@ def postprocessing(gray):
     refined_result = result_refine(refined_result)
     '''
 
-    refined_result = final_refine(result)
-
+    refined_result, flag = final_refine(result)
+    print("result is:", flag)
     return  refined_result
 
 def num_rec(file):

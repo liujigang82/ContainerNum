@@ -1,10 +1,10 @@
 
 01/06/2018
-1. improve function not_inside. ✓（done by checking intersection of rectangles）
+✓ 1. improve function not_inside. （done by checking intersection of rectangles）
    . Get the intersection of two contours.
    . If the intersection/contours is very small(eg. <1/2), then remove the small contour.
 
-2. Deskew.✓
+✓ 2. Deskew.
    . Find the horizontal lines based on the character regions. (sklearn)
    . Another horizontal line is derived by moving the line got in step 1 to the bottom.
    . Note: the vertical lines should lie on the right of the photo.
@@ -16,10 +16,8 @@
 4. Rotation detection
 
 05/06/2018
-1. refine function is_solid_box() in postprocessing.
+✓ 1. refine function is_solid_box() in postprocessing.
 
 2. re-train tesseract
 
 3. Build so file for Ubuntu.
-
-4.

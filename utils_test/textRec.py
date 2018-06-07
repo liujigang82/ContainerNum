@@ -18,7 +18,7 @@ def text_detection_MSER(img):
     ## Get mser, and set parameters
     mser = cv2.MSER_create()
     #mser.setMinArea(100)
-    #mser.setMaxArea(2000)
+    #mser.setMaxArea(750)
 
     ## Do mser detection, get the coodinates and bboxes
     coordinates, bboxes = mser.detectRegions(gray)
