@@ -49,6 +49,7 @@ class MainWindow(QWidget):
         toolbar = self.toolBar.addToolBar('打开照片文件夹')
         toolbar.addAction(openMulti)
         '''
+
         grid.addWidget(self.menubar, 1, 0)
         grid.addWidget(self.toolBar, 2, 0)
 
@@ -76,8 +77,8 @@ class MainWindow(QWidget):
             pixmap1 = QPixmap(fileName)
             pixmap1 = pixmap1.scaled(self.width*2/3, self.height*2/3)
             self.label.setPixmap(pixmap1)
-            rec_results = num_rec(fileName)
-            self.textEdit.append(os.path.basename(os.path.normpath(fileName)) + "柜号： "+rec_results)
+            flag, rec_results = num_rec(fileName)
+            self.textEdit.append(os.path.basename(os.path.normpath(fileName)) + "柜号： " + rec_results)
 
     def openFolderDialog(self):
         self.textEdit.append("识别中...")
@@ -90,7 +91,7 @@ class MainWindow(QWidget):
             #pixmap1.scaled(self.width, self.height)
             #self.label.setPixmap(pixmap1)
             #self.label.setMinimumSize(1, 1)
-            rec_results = num_rec(file)
+            flag, rec_results = num_rec(file)
             self.textEdit.append(os.path.basename(os.path.normpath(file)) + "柜号： "+ rec_results)
 
 if __name__ == '__main__':

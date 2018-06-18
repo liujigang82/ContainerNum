@@ -20,4 +20,4 @@
 
 2. re-train tesseract
 
-3. Build so file for Ubuntu.
+✓ 3. Build so file for Ubuntu.

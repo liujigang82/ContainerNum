@@ -1,7 +1,7 @@
 {
   "threshold_width": {
     "type": "float",
-    "value":" 0.1"
+    "value":" 0.2"
   },
   "threshold_height": {
     "type": "float",
@@ -14,5 +14,9 @@
   "ratio_contour_area":{
     "type":"float",
     "value":0.8
+  },
+  "redidual_RANSACRegressor":{
+    "type":"int",
+    "value": 3
   }
 }

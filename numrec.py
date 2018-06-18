@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 import pytesseract
-from preprocessing import get_perspective_transformed_im,resize_im
-from postprocessing import get_binary_text_ROI, get_image_patch, calculateAngle
+from preprocessing import get_perspective_transformed_im,resize_im, hist_equalization
+from postprocessing import get_binary_text_ROI
 from textProcessing import result_refine, final_refine, str_confidence
 
 pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'\
@@ -10,13 +10,22 @@ pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'\
 def preprocessing_im(img):
     # resize
     img = resize_im(img)
+
+    #img = hist_equalization(img)
     # color to gray
     if len(img.shape) == 3:
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     else:
         gray = img
+
     # perspective transform
     gray, flag = get_perspective_transformed_im(gray)
+    if not flag:
+        #print("Do CLAHE")
+        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+        gray = clahe.apply(gray)
+        gray, flag = get_perspective_transformed_im(gray)
+
     smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
     gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
     #cv2.imshow("perspective", gray)
@@ -25,9 +34,13 @@ def preprocessing_im(img):
 
 def postprocessing(gray):
     canvas3 = get_binary_text_ROI(gray)
+    #cv2.imshow("canvas_ori", canvas3)
+    kernel = np.ones((3, 3), np.uint8)
+    canvas3 = cv2.morphologyEx(canvas3, cv2.MORPH_OPEN, kernel)
     cv2.imshow("canvas", canvas3)
+
     image_str = pytesseract.image_to_string(canvas3)
-    print(image_str)
+    #print("ori result: ", image_str)
     min_conf = 100
     result = ""
     for line in image_str.splitlines():
@@ -46,9 +59,9 @@ def postprocessing(gray):
     refined_result = result_refine(refined_result)
     '''
 
-    refined_result, flag = final_refine(result)
-    print("result is:", flag)
-    return  refined_result
+    flag, refined_result  = final_refine(result)
+    #print("result is:", flag)
+    return  flag, refined_result
 
 def num_rec(file):
     img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)

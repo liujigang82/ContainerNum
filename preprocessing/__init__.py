@@ -19,6 +19,15 @@ def compute_intersection(line_first, line_sec):
     return [x, y]
 
 
+def hist_equalization(img):
+    # histogram equalization
+    img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
+    img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
+    img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
+    img = cv2.fastNlMeansDenoisingColored(img, None, 7, 7, 7, 21)
+    return img
+
+
 def auto_canny(image, sigma=0.33):
     # compute the median of the single channel pixel intensities
     v = np.median(image)
@@ -34,10 +43,10 @@ def auto_canny(image, sigma=0.33):
 def get_horizontal_vertical_lines(gray):
     vertical_params=[]
     gray = auto_canny(gray)
-    cv2.imshow("edge", gray)
+    #cv2.imshow("edge", gray)
     #detect regions in gray scale image
     height, width = gray.shape
-    lines = cv2.HoughLines(gray, rho=1, theta =np.pi/180, threshold = 160)
+    lines = cv2.HoughLines(gray, rho=2, theta =np.pi/180, threshold = int(height/3)) #threshold = int(height/3)
 
     if lines is not None:
         for line in lines:
@@ -66,6 +75,8 @@ def draw_line(gray, rho , theta):
     return gray
 
 def check_line_selected(gray, vertical_params, horizontal_params):
+
+
     np_vert = np.abs(np.array(vertical_params))
     np_hori = np.abs(np.array(horizontal_params))
     pers_matrix =  []
@@ -112,6 +123,9 @@ def compute_perspective_matrix(vertical_params, horizontal_params, h, w):
     index_rho, index_theta = np_hori.argmin(axis=0)
     hori_min = horizontal_params[index_rho]
 
+    #print("vert_min:", vert_min, "vert_max:", vert_max)
+
+
     if abs(vert_max[0])-abs(vert_min[0]) < h/10 or abs(hori_max[0])-abs(hori_min[0]) < w/10:
         return pers_matrix
 
@@ -132,7 +146,6 @@ def compute_perspective_matrix(vertical_params, horizontal_params, h, w):
 
 def get_perspective_transformed_im(gray):
     vertical_params = get_horizontal_vertical_lines(gray)
-    #print("horizontal:", horizontal_params)
     h, w = gray.shape
     hori_line = get_text_line(gray)
     if hori_line[0] == 0 and hori_line[1] == 0:
@@ -143,12 +156,14 @@ def get_perspective_transformed_im(gray):
     horizontal_params.append(hori_line_2)
     #print("vertical:", vertical_params)
     #print("hori:", horizontal_params)
+    #check_line_selected(gray, vertical_params, horizontal_params)
+    #print(vertical_params, horizontal_params)
     if len(vertical_params) > 1 and len(horizontal_params) > 1:
         h, w = gray.shape
         #check_line_selected(gray, vertical_params, horizontal_params)
         M = compute_perspective_matrix(vertical_params, horizontal_params, h, w)
         if M ==[]:
-            return gray
+            return gray, False
         gray = cv2.warpPerspective(gray, M , (w, h))
     return gray, True
 
@@ -156,7 +171,7 @@ def get_perspective_transformed_im(gray):
 def resize_im(image):
     im_shape = image.shape
     #imgScale = 600/im_shape[1]
-    imgScale = 900 / im_shape[1]
+    imgScale = 800 / im_shape[1]
     newX,newY = image.shape[1]*imgScale, image.shape[0]*imgScale
     image = cv2.resize(image, (int(newX),int(newY)))
     return image

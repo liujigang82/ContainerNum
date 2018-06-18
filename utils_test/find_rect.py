@@ -5,7 +5,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from preprocessing  import get_perspective_transformed_im, resize_im #not_inside,
 from sklearn import linear_model
-from postprocessing import is_solid_box, not_inside, is_point_in, contour_rec_ara, find_region_RANSAC
+from postprocessing import is_solid_box, is_point_in, contour_rec_ara, find_region_RANSAC
 
 # global para
 threshold_width = 1/4

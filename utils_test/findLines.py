@@ -19,7 +19,7 @@ def auto_canny(image, sigma=0.33): #0.33
 
 def resize_im(image):
     height, width, depth = image.shape
-    imgScale = 600/width
+    imgScale = 800/width
     newX,newY = image.shape[1]*imgScale, image.shape[0]*imgScale
     image = cv2.resize(image, (int(newX),int(newY)))
     return image
@@ -93,7 +93,7 @@ def compute_perspective_matrix(vertical_params, horizontal_params):
 
 #Your image path i-e receipt path
 
-img = cv2.imread('../img/img3/9.jpg')
+img = cv2.imread('../img/img3/39.jpg')
 img  = resize_im(img)
 
 gray_vis = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

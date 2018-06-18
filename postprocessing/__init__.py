@@ -135,7 +135,7 @@ def detect(c):
 
 def remove_rect(canvas, contour):
     backtorgb = cv2.cvtColor(canvas, cv2.COLOR_GRAY2RGB)
-    cv2.drawContours(backtorgb, [contour], -1, (0, 0, 0), 3)
+    cv2.drawContours(backtorgb, [contour], -1, (0, 0, 0), 4)
     return cv2.cvtColor(backtorgb, cv2.COLOR_BGR2GRAY)
 
 
@@ -173,7 +173,7 @@ def is_solid_box(cnt, method = 0):
         return False
     if method == 1:
         if float(cnt.shape[0]) / float(w*h) < 0.65:
-            return  False
+            return False
     else:
         area = cv2.contourArea(cnt_hull)
         if area == 0:
@@ -262,6 +262,7 @@ def get_text_contour(gray):
         else:
             canvas[y:y + h, x:x + w] = 0
     ### Use RANSAC to find the line of center points
+    #cv2.imshow("canvas", canvas)
     num_centers, line_X, line_Y = find_region_RANSAC(center_points, "", 800, [], [])
     return num_centers, canvas, contour_info_list
 

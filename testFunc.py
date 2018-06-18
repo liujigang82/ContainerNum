@@ -2,14 +2,15 @@ import sys
 import cv2
 import pytesseract
 import numpy as np
-from preprocessing import get_perspective_transformed_im, resize_im
+from preprocessing import get_perspective_transformed_im, resize_im, hist_equalization
 from postprocessing import get_binary_text_ROI
+from matplotlib import pyplot as plt
 #sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
 sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum')
 from utils_test import textRec, drawRect, get_contours, calculateAngle
 from textProcessing import str_confidence, result_refine, final_refine
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
-pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'
+#pytesseract.pytesseract.tesseract_cmd = 'Tesseract-OCR/tesseract'
 
 # global para
 threshold_width = 1/4
@@ -20,10 +21,8 @@ def preprocessing_im(img):
     # resize
     img = resize_im(img)
     # histogram equalization
-    #img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
-    #img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
-    #img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
-    #img = cv2.fastNlMeansDenoisingColored(img, None, 7, 7, 7, 21)
+    #img2= hist_equalization(img)
+
     # color to gray
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     textRec.text_detection_MSER(gray)
@@ -37,9 +36,9 @@ def preprocessing_im(img):
     smoothed_img = cv2.GaussianBlur(gray, (3, 3), 0)
     gray = cv2.addWeighted(gray, 1.5, smoothed_img, -0.5, 0)
 
-
+    plt.hist(gray.ravel(), 256, [0, 256]);
     #cv2.imshow("perspective", gray)
-    cv2.imshow("after deskew", gray)
+    cv2.imshow("after preprocessing", gray)
 
     #binary
     #edges = cv2.Canny(gray, 50, 150, apertureSize=3)
@@ -50,11 +49,18 @@ def preprocessing_im(img):
 
 def postprocessing(gray):
     canvas3 = get_binary_text_ROI(gray)
+    print(canvas3.shape)
+    if canvas3.shape[0]== 0 or canvas3.shape[1] == 0:
+        return ""
+    kernel = np.ones((3, 3), np.uint8)
+    canvas3 = cv2.morphologyEx(canvas3, cv2.MORPH_OPEN, kernel)
     #canvas3 = calculateAngle.calculateAngle(canvas3)
-
     image_str = pytesseract.image_to_string(canvas3)
-    print("result:", image_str)
+    print("ori result:", image_str)
     cv2.imshow("canvas :", canvas3)
+
+
+
 
     min_conf = 100
     result = ""
@@ -82,14 +88,15 @@ def postprocessing(gray):
     return result
 
 
-file = "img/img1/0017.jpg" #oolu.jpg
+file = "img/img3/104.jpg" #oolu.jpg
 #img = cv2.imread("img2/CMAU.jpg")  #0022
 img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
 #cv2.imshow("image", img)
 gray = preprocessing_im(img)
 #get_contour_list(gray)
 postprocessing(gray)
-cv2.waitKey(0)
+plt.show()
+#cv2.waitKey(0)
 
 
 '''

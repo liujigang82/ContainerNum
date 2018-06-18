@@ -1,0 +1,18 @@
+{
+  "threshold_width": {
+    "type": "float",
+    "value":" 0.25"
+  },
+  "threshold_height": {
+    "type": "float",
+    "value":"0.33333333"
+  },
+  "line_thickness_rect_removal": {
+    "type": "int",
+    "value":"2"
+  },
+  "ratio_contour_area":{
+    "type":"float",
+    "value":0.8
+  }
+}
