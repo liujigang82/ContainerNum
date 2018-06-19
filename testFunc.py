@@ -6,7 +6,7 @@ from preprocessing import get_perspective_transformed_im, resize_im, hist_equali
 from postprocessing import get_binary_text_ROI
 from matplotlib import pyplot as plt
 #sys.path.append('C:\\Users\\RT\\Documents\\git\\ContainerNum\\utils')
-sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum')
+#sys.path.append('F:\\Projects\\ConainerNum\\ContainerNum')
 from utils_test import textRec, drawRect, get_contours, calculateAngle
 from textProcessing import str_confidence, result_refine, final_refine
 #pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
@@ -88,7 +88,7 @@ def postprocessing(gray):
     return result
 
 
-file = "img/img3/104.jpg" #oolu.jpg
+file = "img/img2/GESU.jpg" #oolu.jpg
 #img = cv2.imread("img2/CMAU.jpg")  #0022
 img = cv2.imdecode(np.fromfile(file, dtype=np.uint8), -1)
 #cv2.imshow("image", img)
