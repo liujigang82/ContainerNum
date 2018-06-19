@@ -11,6 +11,18 @@ pyinstaller -F --icon=icon\container.ico main.py  --hidden-import scipy._lib.mes
 pyinstaller -F main.py
 
 
+##############Generate so file####################
 cython test.py
-gcc -c -fPIC -I /usr/include/python3.6/  test.c 
-gcc -shared test.o -o test.so 
+gcc -c -fPIC -I /usr/include/python3.6/  test.c
+gcc -shared test.o -o test.so
+
+########compile c file under ubuntu#############
+g++ -o test_app test_containerSo.c -I/usr/include/python3.6 -lpython3.6m
+./test_app
+
+
+
+
+
+
+
