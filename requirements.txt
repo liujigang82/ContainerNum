@@ -6,7 +6,7 @@ macholib==1.9
 matplotlib==2.2.2
 numpy==1.14.3
 opencv-contrib-python==3.4.0.14
-opencv-python==3.4.0.12
+opencv-python==3.4.7.28
 pefile==2017.11.5
 Pillow==5.1.0
 PyInstaller==3.3.1
